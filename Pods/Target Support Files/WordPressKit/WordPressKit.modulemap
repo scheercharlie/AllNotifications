@@ -1,0 +1,6 @@
+framework module WordPressKit {
+  umbrella header "WordPressKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

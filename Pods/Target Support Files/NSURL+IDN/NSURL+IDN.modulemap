@@ -1,0 +1,6 @@
+framework module NSURL_IDN {
+  umbrella header "NSURL+IDN-umbrella.h"
+
+  export *
+  module * { export * }
+}
