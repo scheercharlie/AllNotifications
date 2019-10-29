@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BA00E6AF2368E7C500CA6125 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA00E6AE2368E7C500CA6125 /* AppDelegate.swift */; };
 		BA00E6B12368E7C500CA6125 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA00E6B02368E7C500CA6125 /* SceneDelegate.swift */; };
-		BA00E6B32368E7C500CA6125 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA00E6B22368E7C500CA6125 /* ViewController.swift */; };
+		BA00E6B32368E7C500CA6125 /* LoginListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA00E6B22368E7C500CA6125 /* LoginListViewController.swift */; };
 		BA00E6B62368E7C600CA6125 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA00E6B42368E7C600CA6125 /* Login.storyboard */; };
 		BA00E6B92368E7C600CA6125 /* AllNotifictions.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA00E6B72368E7C600CA6125 /* AllNotifictions.xcdatamodeld */; };
 		BA00E6BB2368E7CC00CA6125 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA00E6BA2368E7CC00CA6125 /* Assets.xcassets */; };
@@ -22,7 +22,7 @@
 		BA00E6AB2368E7C500CA6125 /* AllNotifictions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllNotifictions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA00E6AE2368E7C500CA6125 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA00E6B02368E7C500CA6125 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BA00E6B22368E7C500CA6125 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BA00E6B22368E7C500CA6125 /* LoginListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginListViewController.swift; sourceTree = "<group>"; };
 		BA00E6B52368E7C600CA6125 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		BA00E6B82368E7C600CA6125 /* AllNotifictions.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AllNotifictions.xcdatamodel; sourceTree = "<group>"; };
 		BA00E6BA2368E7CC00CA6125 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		BA00E6CD2368E94500CA6125 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				BA00E6B22368E7C500CA6125 /* ViewController.swift */,
+				BA00E6B22368E7C500CA6125 /* LoginListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -196,7 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA00E6B32368E7C500CA6125 /* ViewController.swift in Sources */,
+				BA00E6B32368E7C500CA6125 /* LoginListViewController.swift in Sources */,
 				BA00E6AF2368E7C500CA6125 /* AppDelegate.swift in Sources */,
 				BA00E6CF2368EDAB00CA6125 /* LoginCell.swift in Sources */,
 				BA00E6B92368E7C600CA6125 /* AllNotifictions.xcdatamodeld in Sources */,
