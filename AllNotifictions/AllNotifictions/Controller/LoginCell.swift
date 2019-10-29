@@ -9,5 +9,8 @@
 import UIKit
 
 class LoginCell: UITableViewCell {
+    @IBOutlet weak var serviceTitleLabel: UILabel!
+    @IBOutlet weak var serviceLogoImage: UIImageView!
+    @IBOutlet weak var loggedInCheckBoxImage: UIImageView!
     
 }

@@ -68,6 +68,9 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="loggedInCheckBoxImage" destination="hvW-58-UmZ" id="SYm-4h-UzU"/>
+                                                    <outlet property="serviceLogoImage" destination="FIL-vX-VBT" id="Lci-AK-4ff"/>
+                                                    <outlet property="serviceTitleLabel" destination="idh-V0-LoW" id="Y3Q-lw-CLG"/>
                                                     <segue destination="lRB-RM-Ns5" kind="show" id="UkF-4S-vKx"/>
                                                 </connections>
                                             </tableViewCell>
