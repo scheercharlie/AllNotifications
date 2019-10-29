@@ -1,6 +1,0 @@
-framework module WordPressShared {
-  umbrella header "WordPressShared-umbrella.h"
-
-  export *
-  module * { export * }
-}

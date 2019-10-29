@@ -1,6 +1,0 @@
-framework module WordPressUI {
-  umbrella header "WordPressUI-umbrella.h"
-
-  export *
-  module * { export * }
-}
