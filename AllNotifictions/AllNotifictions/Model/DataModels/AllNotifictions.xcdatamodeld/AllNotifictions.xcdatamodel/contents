@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="19A602" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Notification" representedClassName="Notification" syncable="YES" codeGenerationType="class">
-        <relationship name="notificationsService" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NotificationService" inverseName="notifications" inverseEntity="NotificationService"/>
+        <relationship name="notificationsHost" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NotificationHost" inverseName="notifications" inverseEntity="NotificationHost"/>
     </entity>
-    <entity name="NotificationService" representedClassName="NotificationService" syncable="YES" codeGenerationType="class">
+    <entity name="NotificationHost" representedClassName="NotificationHost" syncable="YES" codeGenerationType="class">
+        <attribute name="hostType" optional="YES" attributeType="Transformable" customClassName="HostType"/>
         <attribute name="isLoggedIn" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="key" optional="YES" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="serviceTypeID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="username" optional="YES" attributeType="String"/>
-        <relationship name="notifications" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Notification" inverseName="notificationsService" inverseEntity="Notification"/>
+        <relationship name="notifications" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Notification" inverseName="notificationsHost" inverseEntity="Notification"/>
     </entity>
     <elements>
-        <element name="NotificationService" positionX="-271.4140625" positionY="-7.35546875" width="128" height="133"/>
+        <element name="NotificationHost" positionX="-271.4140625" positionY="-7.35546875" width="128" height="148"/>
         <element name="Notification" positionX="-54" positionY="-9" width="128" height="58"/>
     </elements>
 </model>
