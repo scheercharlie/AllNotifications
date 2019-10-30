@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import CoreData
 
 class LoginListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+    var fetchedResultsController: NSFetchedResultsController<NotificationHost>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let request: NSFetchRequest<NotificationHost> = NotificationHost.fetchRequest()
+        let sortDescriptor = NSSortDescriptor.init(key: "objectID", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        
     }
 
     @IBAction func skipWasTapped(_ sender: Any) {
