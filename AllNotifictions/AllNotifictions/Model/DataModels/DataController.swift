@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class DataController {
-    static let shared = DataController(modelName: "AllNotifications")
+    static let shared = DataController(modelName: "AllNotifictions")
     
     private init(modelName: String) {
         persistentContainer = NSPersistentContainer(name: modelName)

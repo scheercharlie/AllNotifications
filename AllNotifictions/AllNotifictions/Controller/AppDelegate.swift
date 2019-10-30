@@ -13,7 +13,10 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        DataController.shared.load {
+            print("Persistent Container load successful")
+        }
         
         //Prepare a fetched results controller for NotificationHosts
         //If all of the Host options do not exist create them.
