@@ -74,6 +74,7 @@
 		BA00E6C52368E86A00CA6125 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BA2C21D1236923CE0094D417 /* Classes */,
 				BA00E6CA2368E8F300CA6125 /* DataModels */,
 			);
 			path = Model;
@@ -122,6 +123,13 @@
 				BA00E6B22368E7C500CA6125 /* LoginListViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		BA2C21D1236923CE0094D417 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
