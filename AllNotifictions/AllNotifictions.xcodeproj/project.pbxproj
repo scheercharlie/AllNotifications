@@ -20,6 +20,7 @@
 		BA2C21D5236949280094D417 /* HostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D4236949280094D417 /* HostType.swift */; };
 		BA2C21D8236960D30094D417 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D623695D7A0094D417 /* DataController.swift */; };
 		BA2C21DA236A2F250094D417 /* HostTypeToDataTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D9236A2F250094D417 /* HostTypeToDataTransformer.swift */; };
+		BA4345BD236A55F100C5A413 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4345BC236A55F100C5A413 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		BA2C21D4236949280094D417 /* HostType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostType.swift; sourceTree = "<group>"; };
 		BA2C21D623695D7A0094D417 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		BA2C21D9236A2F250094D417 /* HostTypeToDataTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostTypeToDataTransformer.swift; sourceTree = "<group>"; };
+		BA4345BC236A55F100C5A413 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				BA00E6B22368E7C500CA6125 /* LoginListViewController.swift */,
+				BA4345BC236A55F100C5A413 /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				BA00E6B92368E7C600CA6125 /* AllNotifictions.xcdatamodeld in Sources */,
 				BA2C21D8236960D30094D417 /* DataController.swift in Sources */,
 				BA2C21D3236924990094D417 /* NotificationHost.swift in Sources */,
+				BA4345BD236A55F100C5A413 /* LoginViewController.swift in Sources */,
 				BA00E6B12368E7C500CA6125 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

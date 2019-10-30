@@ -74,12 +74,22 @@ extension LoginListViewController: UITableViewDataSource, UITableViewDelegate {
         return 100
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! LoginCell
-        
-        cell.loggedInCheckBoxImage.alpha = 1
-    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == constants.loginSegueIdentifier {
+            let cell = sender as! LoginCell
+        
+            if let index = tableView.indexPath(for: cell) {
+                let selectedService = fetchedResultsController.object(at: index)
+                let destination = segue.destination as! LoginViewController
+                destination.selectedService = selectedService
+            } else {
+                //Print error
+                //Display alert: Login failed
+            }
+            
+        }
+    }
     
 }
 
@@ -87,5 +97,6 @@ extension LoginListViewController {
     enum constants {
         static let cellIdentifier = "loginCell"
         static let noLogoFound = "not-found"
+        static let loginSegueIdentifier = "segueToLogin"
     }
 }

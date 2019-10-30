@@ -44,7 +44,7 @@
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FIL-vX-VBT">
                                                             <rect key="frame" x="58" y="20" width="60" height="60"/>
-                                                            <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="60" id="YFc-a6-6rH"/>
                                                                 <constraint firstAttribute="width" constant="60" id="lBo-H8-Km5"/>
@@ -71,7 +71,7 @@
                                                     <outlet property="loggedInCheckBoxImage" destination="hvW-58-UmZ" id="SYm-4h-UzU"/>
                                                     <outlet property="serviceLogoImage" destination="FIL-vX-VBT" id="Lci-AK-4ff"/>
                                                     <outlet property="serviceTitleLabel" destination="idh-V0-LoW" id="Y3Q-lw-CLG"/>
-                                                    <segue destination="lRB-RM-Ns5" kind="show" id="UkF-4S-vKx"/>
+                                                    <segue destination="lRB-RM-Ns5" kind="show" identifier="segueToLogin" id="UkF-4S-vKx"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -113,10 +113,10 @@
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="137.94642857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="mof-Fm-aQ3">
             <objects>
-                <viewController id="lRB-RM-Ns5" sceneMemberID="viewController">
+                <viewController id="lRB-RM-Ns5" customClass="LoginViewController" customModule="AllNotifictions" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rLq-l2-7fg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
