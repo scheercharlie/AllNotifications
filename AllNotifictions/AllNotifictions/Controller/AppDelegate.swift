@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Prepare a fetched results controller for NotificationHosts
         //If all of the Host options do not exist create them.
         let fetchedResultsController = prepareFetchedResultsController()
-        if let fetchedObjects = fetchedResultsController.fetchedObjects {
+        if let fetchedObjects = fetchedResultsController.fetchedObjects, fetchedObjects.count != HostType.SocialService.allCases.count {
             createHostTypeObjects()
             
             if DataController.shared.viewContext.hasChanges {
