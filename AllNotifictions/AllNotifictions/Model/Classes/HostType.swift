@@ -8,15 +8,25 @@
 
 import Foundation
 
-public class HostType: NSObject, Codable {
-    let type: SocialService!
+public class HostType: NSObject, NSSecureCoding {
+    public static var supportsSecureCoding: Bool = true
+    var type: SocialService!
+
+    
+    public func encode(with coder: NSCoder) {
+        coder.encode(type, forKey: "type")
+    }
+    
+    public required init?(coder: NSCoder) {
+        coder.decodeObject(forKey: "type")
+    }
 
     
     init(type: SocialService) {
         self.type = type
     }
     
-    enum SocialService: Int, Codable {
+    enum SocialService: Int, CaseIterable, Codable {
         case github = 1, wordpress, slack
     }
     

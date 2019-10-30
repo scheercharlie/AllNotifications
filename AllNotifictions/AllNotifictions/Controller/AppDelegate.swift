@@ -17,10 +17,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        let context = persistentContainer.viewContext
+
+        let request: NSFetchRequest<NotificationHost> = NotificationHost.fetchRequest()
+        let sortDescriptor = NSSortDescriptor.init(key: "objectID", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        
+        var frc = NSFetchedResultsController<NotificationHost>()
+        
+        frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: "service")
+        
+        do {
+            try frc.performFetch()
+        } catch {
+            fatalError()
+        }
+        
+        if let fetchedObjects = frc.fetchedObjects, fetchedObjects.count < 1 {
+            print("less than 1")
+            for service in HostType.SocialService.allCases {
+                switch service {
+                case .github:
+                    let github = NotificationHost(context: context)
+                    github.hostType?.type = service
+                    github.isLoggedIn = false
+                case .wordpress:
+                    let wordpress = NotificationHost(context: context)
+                    wordpress.hostType?.type = service
+                    wordpress.isLoggedIn = false
+                case .slack:
+                    let slack = NotificationHost(context: context)
+                    slack.hostType?.type = service
+                    slack.isLoggedIn = false
+                }
+            }
+        } else {
+            print("more than 1")
+        }
+        print(context.hasChanges)
         
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
