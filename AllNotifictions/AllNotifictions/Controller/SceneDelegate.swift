@@ -43,14 +43,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
-
-        // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        saveChangesToContexts()
+        
     }
 
-
+    fileprivate func saveChangesToContexts() {
+        if DataController.shared.viewContext.hasChanges {
+            do {
+                try DataController.shared.viewContext.save()
+            } catch {
+                print("Could not save View context")
+            }
+        }
+        
+        if DataController.shared.backgroundContext.hasChanges {
+            do {
+                try DataController.shared.backgroundContext.save()
+            } catch {
+                print("Could not save View context")
+            }
+        }
+    }
 }
 

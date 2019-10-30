@@ -23,6 +23,8 @@ extension NotificationHost {
             default:
                 return nil
             }
+        } else {
+            return nil
         }
     }
 }

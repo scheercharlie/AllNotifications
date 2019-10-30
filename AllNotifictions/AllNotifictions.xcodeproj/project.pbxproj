@@ -18,7 +18,7 @@
 		BA00E6CF2368EDAB00CA6125 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA00E6CE2368EDAB00CA6125 /* LoginCell.swift */; };
 		BA2C21D3236924990094D417 /* NotificationHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D2236924990094D417 /* NotificationHost.swift */; };
 		BA2C21D5236949280094D417 /* HostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D4236949280094D417 /* HostType.swift */; };
-		BA2C21D723695D7A0094D417 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D623695D7A0094D417 /* DataController.swift */; };
+		BA2C21D8236960D30094D417 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D623695D7A0094D417 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				BA00E6B72368E7C600CA6125 /* AllNotifictions.xcdatamodeld */,
+				BA2C21D623695D7A0094D417 /* DataController.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -136,7 +137,6 @@
 			children = (
 				BA2C21D2236924990094D417 /* NotificationHost.swift */,
 				BA2C21D4236949280094D417 /* HostType.swift */,
-				BA2C21D623695D7A0094D417 /* DataController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -218,7 +218,7 @@
 				BA2C21D5236949280094D417 /* HostType.swift in Sources */,
 				BA00E6CF2368EDAB00CA6125 /* LoginCell.swift in Sources */,
 				BA00E6B92368E7C600CA6125 /* AllNotifictions.xcdatamodeld in Sources */,
-				BA2C21D723695D7A0094D417 /* DataController.swift in Sources */,
+				BA2C21D8236960D30094D417 /* DataController.swift in Sources */,
 				BA2C21D3236924990094D417 /* NotificationHost.swift in Sources */,
 				BA00E6B12368E7C500CA6125 /* SceneDelegate.swift in Sources */,
 			);

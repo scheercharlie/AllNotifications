@@ -20,7 +20,7 @@ class LoginListViewController: UIViewController {
         let request: NSFetchRequest<NotificationHost> = NotificationHost.fetchRequest()
         let sortDescriptor = NSSortDescriptor.init(key: "objectID", ascending: true)
         request.sortDescriptors = [sortDescriptor]
-        
+    
     }
 
     @IBAction func skipWasTapped(_ sender: Any) {
