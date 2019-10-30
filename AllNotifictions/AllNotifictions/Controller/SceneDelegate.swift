@@ -43,26 +43,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        saveChangesToContexts()
-        
-    }
-
-    fileprivate func saveChangesToContexts() {
-        if DataController.shared.viewContext.hasChanges {
-            do {
-                try DataController.shared.viewContext.save()
-            } catch {
-                print("Could not save View context")
-            }
-        }
-        
-        if DataController.shared.backgroundContext.hasChanges {
-            do {
-                try DataController.shared.backgroundContext.save()
-            } catch {
-                print("Could not save View context")
-            }
-        }
+        DataController.shared.saveViewContext()
+        DataController.shared.saveBackgroundContext()   
     }
 }
 

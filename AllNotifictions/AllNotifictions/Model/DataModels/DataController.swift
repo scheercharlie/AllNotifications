@@ -41,4 +41,24 @@ class DataController {
             completion?()
         }
     }
+    
+    func saveViewContext() {
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch {
+                print("Could not save View context")
+            }
+        }
+    }
+    
+    func saveBackgroundContext() {
+        if backgroundContext.hasChanges {
+            do {
+                try backgroundContext.save()
+            } catch {
+                print("Could not save View context")
+            }
+        }
+    }
 }
