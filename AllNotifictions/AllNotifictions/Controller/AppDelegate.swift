@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Prepare a fetched results controller for NotificationHosts
         //If all of the Host options do not exist create them.
         let fetchedResultsController = prepareFetchedResultsController()
-        if let fetchedObjects = fetchedResultsController.fetchedObjects, fetchedObjects.count != HostType.SocialService.allCases.count {
+        if let fetchedObjects = fetchedResultsController.fetchedObjects {
             createHostTypeObjects()
             
             if DataController.shared.viewContext.hasChanges {
@@ -60,20 +60,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //Create new host objects
     fileprivate func createHostTypeObjects() {
         for service in HostType.SocialService.allCases {
-            switch service {
-            case .github:
-                let github = NotificationHost(context: DataController.shared.viewContext)
-                github.hostType?.type = service
-                github.isLoggedIn = false
-            case .wordpress:
-                let wordpress = NotificationHost(context: DataController.shared.viewContext)
-                wordpress.hostType?.type = service
-                wordpress.isLoggedIn = false
-            case .slack:
-                let slack = NotificationHost(context: DataController.shared.viewContext)
-                slack.hostType?.type = service
-                slack.isLoggedIn = false
-            }
+            let newService = NotificationHost(context: DataController.shared.viewContext)
+            let hostType = HostType(type: service)
+            newService.setDataFromType(hostType)
+            newService.isLoggedIn = false
+            newService.title = hostType.getHostTitle()
+
         }
     }
 }

@@ -19,6 +19,7 @@
 		BA2C21D3236924990094D417 /* NotificationHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D2236924990094D417 /* NotificationHost.swift */; };
 		BA2C21D5236949280094D417 /* HostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D4236949280094D417 /* HostType.swift */; };
 		BA2C21D8236960D30094D417 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D623695D7A0094D417 /* DataController.swift */; };
+		BA2C21DA236A2F250094D417 /* HostTypeToDataTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D9236A2F250094D417 /* HostTypeToDataTransformer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		BA2C21D2236924990094D417 /* NotificationHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHost.swift; sourceTree = "<group>"; };
 		BA2C21D4236949280094D417 /* HostType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostType.swift; sourceTree = "<group>"; };
 		BA2C21D623695D7A0094D417 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		BA2C21D9236A2F250094D417 /* HostTypeToDataTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostTypeToDataTransformer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				BA00E6B72368E7C600CA6125 /* AllNotifictions.xcdatamodeld */,
-				BA2C21D623695D7A0094D417 /* DataController.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -137,6 +138,8 @@
 			children = (
 				BA2C21D2236924990094D417 /* NotificationHost.swift */,
 				BA2C21D4236949280094D417 /* HostType.swift */,
+				BA2C21D623695D7A0094D417 /* DataController.swift */,
+				BA2C21D9236A2F250094D417 /* HostTypeToDataTransformer.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA00E6B32368E7C500CA6125 /* LoginListViewController.swift in Sources */,
+				BA2C21DA236A2F250094D417 /* HostTypeToDataTransformer.swift in Sources */,
 				BA00E6AF2368E7C500CA6125 /* AppDelegate.swift in Sources */,
 				BA2C21D5236949280094D417 /* HostType.swift in Sources */,
 				BA00E6CF2368EDAB00CA6125 /* LoginCell.swift in Sources */,

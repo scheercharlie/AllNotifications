@@ -9,17 +9,44 @@
 import Foundation
 
 //A class of available Notification Host Services
-public class HostType: NSObject, NSSecureCoding {
-    public static var supportsSecureCoding: Bool = true
+class HostType: Codable {
     var type: SocialService!
+    
+    enum CodingKeys: String, CodingKey {
+        case type
+    }
 
-    //Required functions for using with Transformable core data type
-    public func encode(with coder: NSCoder) {
-        coder.encode(type, forKey: "type")
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        let typeInt = self.type.rawValue
+        try container.encode(typeInt, forKey: .type)
     }
     
-    public required init?(coder: NSCoder) {
-        coder.decodeObject(forKey: "type")
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let decodedInt = try values.decode(Int.self, forKey: .type)
+        self.type = HostType.SocialService.init(rawValue: decodedInt)
+    }
+    
+    init(type: SocialService) {
+        self.type = type
+    }
+    
+    func getHostTitle() -> String? {
+        if let hostType = type {
+            switch hostType {
+            case .github:
+                return "Github"
+            case .wordpress:
+                return "WordPress"
+            case .slack:
+                return "Slack"
+            }
+        } else {
+            return nil
+        }
     }
     
     //Defined available services
@@ -27,5 +54,8 @@ public class HostType: NSObject, NSSecureCoding {
         case github = 1, wordpress, slack
     }
     
+    enum constants {
+        static let serviceKey = "service"
+    }
     
 }

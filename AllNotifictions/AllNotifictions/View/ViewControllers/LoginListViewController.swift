@@ -20,6 +20,14 @@ class LoginListViewController: UIViewController {
         let request: NSFetchRequest<NotificationHost> = NotificationHost.fetchRequest()
         let sortDescriptor = NSSortDescriptor.init(key: "objectID", ascending: true)
         request.sortDescriptors = [sortDescriptor]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: DataController.shared.backgroundContext, sectionNameKeyPath: nil, cacheName: "service")
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            //TO DO: Handle the error better
+            print("Fetch failed")
+        }
     
     }
 
@@ -31,15 +39,33 @@ class LoginListViewController: UIViewController {
 
 extension LoginListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        guard let fetchedObjects = fetchedResultsController.fetchedObjects else {
+            print("Could not fetch objects")
+            return 0
+        }
+        
+        return fetchedObjects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell = tableView.dequeueReusableCell(withIdentifier: constants.cellIdentifier, for: indexPath) as! LoginCell
+        let service = fetchedResultsController.object(at: indexPath)
         
-        tableCell.serviceLogoImage.image = UIImage(named: "not-found")
-        tableCell.loggedInCheckBoxImage.alpha = 0
-        tableCell.serviceTitleLabel.text = "WordPress"
+        if let title = service.title, let logo = UIImage(named: title) {
+            tableCell.serviceLogoImage.image = logo
+        } else {
+            tableCell.serviceLogoImage.image = UIImage(named: constants.noLogoFound)
+        }
+        
+        if service.isLoggedIn {
+            tableCell.loggedInCheckBoxImage.alpha = 1
+        } else {
+            tableCell.loggedInCheckBoxImage.alpha = 0
+        }
+        
+        if let title = service.title {
+            tableCell.serviceTitleLabel.text = title
+        }
         
         return tableCell
     }
@@ -60,5 +86,6 @@ extension LoginListViewController: UITableViewDataSource, UITableViewDelegate {
 extension LoginListViewController {
     enum constants {
         static let cellIdentifier = "loginCell"
+        static let noLogoFound = "not-found"
     }
 }
