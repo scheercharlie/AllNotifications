@@ -11,5 +11,18 @@ import CoreData
 
 extension NotificationHost {
     
-
+    func getHostTitle() -> String? {
+        if let hostType = self.hostType {
+            switch hostType.type {
+            case .github:
+                return "Github"
+            case .wordpress:
+                return "WordPress"
+            case .slack:
+                return "Slack"
+            default:
+                return nil
+            }
+        }
+    }
 }
