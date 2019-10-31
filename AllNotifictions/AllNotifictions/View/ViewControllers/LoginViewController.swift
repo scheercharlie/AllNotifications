@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+
+//TO DO: figure out how to require view to be vertical
 class LoginViewController: UIViewController {
     var selectedService: NotificationHost!
     
