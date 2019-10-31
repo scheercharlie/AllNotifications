@@ -20,18 +20,23 @@ class LoginViewController: UIViewController {
     
     
     var selectedService: NotificationHost!
+    var textFieldDelegate: LoginTextFieldDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view loaded")
         if let selectedService = selectedService {
-            print("service passed")
-            print(selectedService.title!)
+            serviceTitleLabel.text = selectedService.title
         }
+        
+        textFieldDelegate = LoginTextFieldDelegate()
+        usernameTextField.delegate = textFieldDelegate
+        passwordTextField.delegate = textFieldDelegate
+        
+        
     }
     
     @IBAction func loginButtonWasTapped(_ sender: Any) {
-            
         print("login was tapped")
     }
     
