@@ -180,6 +180,9 @@
                                             <constraint firstAttribute="height" constant="75" id="Y0N-I7-4hf"/>
                                         </constraints>
                                         <state key="normal" title="Login"/>
+                                        <connections>
+                                            <action selector="loginButtonWasTapped:" destination="lRB-RM-Ns5" eventType="touchUpInside" id="GFZ-dd-I9A"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -208,6 +211,12 @@
                         <viewLayoutGuide key="safeArea" id="XlB-gP-667"/>
                     </view>
                     <navigationItem key="navigationItem" id="mXa-oK-R6Y"/>
+                    <connections>
+                        <outlet property="logoImage" destination="pvP-Um-13w" id="bOH-hS-wxd"/>
+                        <outlet property="passwordTextField" destination="z2c-Lp-nxr" id="Cp7-Cy-YtR"/>
+                        <outlet property="serviceTitleLabel" destination="ldT-JS-1H5" id="fiy-q4-3W3"/>
+                        <outlet property="usernameTextField" destination="cNc-UV-veh" id="du4-i6-BfG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3Z-8h-2QA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

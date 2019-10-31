@@ -12,6 +12,13 @@ import UIKit
 
 //TO DO: figure out how to require view to be vertical
 class LoginViewController: UIViewController {
+    
+    @IBOutlet weak var logoImage: UIImageView!
+    @IBOutlet weak var serviceTitleLabel: UILabel!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    
     var selectedService: NotificationHost!
     
     override func viewDidLoad() {
@@ -22,4 +29,11 @@ class LoginViewController: UIViewController {
             print(selectedService.title!)
         }
     }
+    
+    @IBAction func loginButtonWasTapped(_ sender: Any) {
+            
+        print("login was tapped")
+    }
+    
+    
 }
