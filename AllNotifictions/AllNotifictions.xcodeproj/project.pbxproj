@@ -22,6 +22,8 @@
 		BA2C21DA236A2F250094D417 /* HostTypeToDataTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D9236A2F250094D417 /* HostTypeToDataTransformer.swift */; };
 		BA4345BD236A55F100C5A413 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4345BC236A55F100C5A413 /* LoginViewController.swift */; };
 		BA4345BF236A5E3000C5A413 /* LoginTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4345BE236A5E3000C5A413 /* LoginTextFieldDelegate.swift */; };
+		BAA147EB236E6D8100CF5883 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA147EA236E6D8100CF5883 /* APIClient.swift */; };
+		BAA147ED236E70CC00CF5883 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA147EC236E70CC00CF5883 /* HTTPHeaders.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		BA2C21D9236A2F250094D417 /* HostTypeToDataTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostTypeToDataTransformer.swift; sourceTree = "<group>"; };
 		BA4345BC236A55F100C5A413 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BA4345BE236A5E3000C5A413 /* LoginTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextFieldDelegate.swift; sourceTree = "<group>"; };
+		BAA147EA236E6D8100CF5883 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		BAA147EC236E70CC00CF5883 /* HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,8 @@
 				BA2C21D4236949280094D417 /* HostType.swift */,
 				BA2C21D623695D7A0094D417 /* DataController.swift */,
 				BA2C21D9236A2F250094D417 /* HostTypeToDataTransformer.swift */,
+				BAA147EA236E6D8100CF5883 /* APIClient.swift */,
+				BAA147EC236E70CC00CF5883 /* HTTPHeaders.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -233,6 +239,8 @@
 				BA2C21D3236924990094D417 /* NotificationHost.swift in Sources */,
 				BA4345BD236A55F100C5A413 /* LoginViewController.swift in Sources */,
 				BA00E6B12368E7C500CA6125 /* SceneDelegate.swift in Sources */,
+				BAA147EB236E6D8100CF5883 /* APIClient.swift in Sources */,
+				BAA147ED236E70CC00CF5883 /* HTTPHeaders.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
