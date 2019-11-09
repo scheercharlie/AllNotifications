@@ -81,7 +81,7 @@ extension LoginListViewController: UITableViewDataSource, UITableViewDelegate {
         
             if let index = tableView.indexPath(for: cell) {
                 let selectedService = fetchedResultsController.object(at: index)
-                let destination = segue.destination as! LoginViewController
+                let destination = segue.destination as! LoginWebViewController
                 destination.selectedService = selectedService
             } else {
                 //Print error

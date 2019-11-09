@@ -22,9 +22,13 @@
 		BA2C21DA236A2F250094D417 /* HostTypeToDataTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D9236A2F250094D417 /* HostTypeToDataTransformer.swift */; };
 		BA4345BD236A55F100C5A413 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4345BC236A55F100C5A413 /* LoginViewController.swift */; };
 		BA4345BF236A5E3000C5A413 /* LoginTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4345BE236A5E3000C5A413 /* LoginTextFieldDelegate.swift */; };
+		BA8E09CD23765CFD00D66124 /* LoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8E09CC23765CFD00D66124 /* LoginWebViewController.swift */; };
 		BAA147EB236E6D8100CF5883 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA147EA236E6D8100CF5883 /* APIClient.swift */; };
 		BAA147ED236E70CC00CF5883 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA147EC236E70CC00CF5883 /* HTTPHeaders.swift */; };
 		BAA147EF236E7A0600CF5883 /* WordpressAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA147EE236E7A0600CF5883 /* WordpressAPIClient.swift */; };
+		BAD92C5323767E17004BB4E7 /* WordPressAPIAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD92C5223767E17004BB4E7 /* WordPressAPIAuthResponse.swift */; };
+		BAD92C5523767F3E004BB4E7 /* WordPressAPIAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD92C5423767F3E004BB4E7 /* WordPressAPIAuthRequest.swift */; };
+		BAD92C5723768066004BB4E7 /* WordPressAPIAuthErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD92C5623768066004BB4E7 /* WordPressAPIAuthErrorResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,9 +50,13 @@
 		BA4345BC236A55F100C5A413 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BA4345BE236A5E3000C5A413 /* LoginTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextFieldDelegate.swift; sourceTree = "<group>"; };
 		BA8E09CB237643F400D66124 /* AllNotifictions.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AllNotifictions.entitlements; sourceTree = "<group>"; };
+		BA8E09CC23765CFD00D66124 /* LoginWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebViewController.swift; sourceTree = "<group>"; };
 		BAA147EA236E6D8100CF5883 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		BAA147EC236E70CC00CF5883 /* HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
 		BAA147EE236E7A0600CF5883 /* WordpressAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordpressAPIClient.swift; sourceTree = "<group>"; };
+		BAD92C5223767E17004BB4E7 /* WordPressAPIAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPressAPIAuthResponse.swift; sourceTree = "<group>"; };
+		BAD92C5423767F3E004BB4E7 /* WordPressAPIAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPressAPIAuthRequest.swift; sourceTree = "<group>"; };
+		BAD92C5623768066004BB4E7 /* WordPressAPIAuthErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPressAPIAuthErrorResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +151,7 @@
 			children = (
 				BA00E6B22368E7C500CA6125 /* LoginListViewController.swift */,
 				BA4345BC236A55F100C5A413 /* LoginViewController.swift */,
+				BA8E09CC23765CFD00D66124 /* LoginWebViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -157,6 +166,9 @@
 				BAA147EA236E6D8100CF5883 /* APIClient.swift */,
 				BAA147EC236E70CC00CF5883 /* HTTPHeaders.swift */,
 				BAA147EE236E7A0600CF5883 /* WordpressAPIClient.swift */,
+				BAD92C5223767E17004BB4E7 /* WordPressAPIAuthResponse.swift */,
+				BAD92C5423767F3E004BB4E7 /* WordPressAPIAuthRequest.swift */,
+				BAD92C5623768066004BB4E7 /* WordPressAPIAuthErrorResponse.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -234,6 +246,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA00E6B32368E7C500CA6125 /* LoginListViewController.swift in Sources */,
+				BA8E09CD23765CFD00D66124 /* LoginWebViewController.swift in Sources */,
+				BAD92C5723768066004BB4E7 /* WordPressAPIAuthErrorResponse.swift in Sources */,
 				BA2C21DA236A2F250094D417 /* HostTypeToDataTransformer.swift in Sources */,
 				BA4345BF236A5E3000C5A413 /* LoginTextFieldDelegate.swift in Sources */,
 				BA00E6AF2368E7C500CA6125 /* AppDelegate.swift in Sources */,
@@ -241,10 +255,12 @@
 				BA00E6CF2368EDAB00CA6125 /* LoginCell.swift in Sources */,
 				BA00E6B92368E7C600CA6125 /* AllNotifictions.xcdatamodeld in Sources */,
 				BA2C21D8236960D30094D417 /* DataController.swift in Sources */,
+				BAD92C5523767F3E004BB4E7 /* WordPressAPIAuthRequest.swift in Sources */,
 				BAA147EF236E7A0600CF5883 /* WordpressAPIClient.swift in Sources */,
 				BA2C21D3236924990094D417 /* NotificationHost.swift in Sources */,
 				BA4345BD236A55F100C5A413 /* LoginViewController.swift in Sources */,
 				BA00E6B12368E7C500CA6125 /* SceneDelegate.swift in Sources */,
+				BAD92C5323767E17004BB4E7 /* WordPressAPIAuthResponse.swift in Sources */,
 				BAA147EB236E6D8100CF5883 /* APIClient.swift in Sources */,
 				BAA147ED236E70CC00CF5883 /* HTTPHeaders.swift in Sources */,
 			);

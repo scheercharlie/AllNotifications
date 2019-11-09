@@ -10,13 +10,15 @@ import Foundation
 
 class APIClient {
     //Base API request that takes no special Headers
-    private func ApiTaskRequer<RequestType: Encodable, ResponseType: Decodable, ErrorResponseType: Decodable>(url: URL, method: String, responseType: ResponseType.Type, body: RequestType, errorResponse: ErrorResponseType.Type, completion: @escaping (ResponseType?, ErrorResponseType?, Error?) -> Void ) {
+    static func ApiTaskRequest<RequestType: Encodable, ResponseType: Decodable, ErrorResponseType: Decodable>(url: URL, method: String, responseType: ResponseType.Type, body: RequestType, errorResponseType: ErrorResponseType.Type, completion: @escaping (ResponseType?, ErrorResponseType?, Error?) -> Void ) {
         var request = URLRequest(url: url)
         request.httpMethod = method
         
         do {
             let jsonEncoder = JSONEncoder()
             let data = try jsonEncoder.encode(body)
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            print(json)
             request.httpBody = data
         } catch {
             print("Could not encode Data")
@@ -33,6 +35,12 @@ class APIClient {
             }
             
             let jsonDecoder = JSONDecoder()
+//            print(data)
+//            print(response)
+//            print(error)
+            
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            print(json)
             
             do {
                 let decodedData = try jsonDecoder.decode(ResponseType.self, from: data)
@@ -56,7 +64,7 @@ class APIClient {
     }
     
     //Base API request including HTTP headers
-    private func ApiTaskRequestWithHeaders<RequestType: Encodable, ResponseType: Decodable, ErrorResponseType: Decodable>(url: URL, method: String, responseType: ResponseType.Type, body: RequestType, errprResponseType: ErrorResponseType.Type, headers: [HTTPHeaders], completion: @escaping (ResponseType?, ErrorResponseType?, Error?) -> Void) {
+    static func ApiTaskRequestWithHeaders<RequestType: Encodable, ResponseType: Decodable, ErrorResponseType: Decodable>(url: URL, method: String, responseType: ResponseType.Type, body: RequestType, errorResponseType: ErrorResponseType.Type, headers: [HTTPHeaders], completion: @escaping (ResponseType?, ErrorResponseType?, Error?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = method
         
