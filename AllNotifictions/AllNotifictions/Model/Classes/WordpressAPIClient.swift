@@ -56,17 +56,17 @@ class WordpressAPIClient: APIClient {
     
     private static func codeAuthenticationPostRequest(code: String) {
         print(code)
-        var request = URLRequest(url: endpoints.codeAuthentication.url)
-        let body = WordPressAPIAuthRequest(clientId: Auth.clientId, redirectURI: Auth.redirectURI, clientSecret: Auth.clientSecret, code: code, grantType: "authorization_code")
-        let encoder = JSONEncoder()
-        let data = try? encoder.encode(body)
+        let url = URL(string: "https://public-api.wordpress.com/oauth2/token")
+        var request = URLRequest(url: url!)
+        
+        let body = WordPressAPIAuthRequest(clientId: Auth.clientId, redirectURI: Auth.redirectURI, clientSecret: Auth.clientSecret, code: code, grantType: "authentication-type")
+        let jsonEncoder = JSONEncoder()
+        let data = try? jsonEncoder.encode(body)
         
         request.httpMethod = "POST"
-        
         request.httpBody = data
         
-        let json = try? JSONSerialization.jsonObject(with: request.httpBody!, options: [])
-        print(json)
+        
         let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let data = data {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
