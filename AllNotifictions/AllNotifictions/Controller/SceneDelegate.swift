@@ -46,5 +46,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         DataController.shared.saveViewContext()
         DataController.shared.saveBackgroundContext()   
     }
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        print("did receive activity")
+        
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+            print("browsing web")
+            let url = userActivity.webpageURL!
+            print(url.absoluteString)
+        }
+    }
 }
 

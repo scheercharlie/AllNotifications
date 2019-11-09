@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "JV7RMWN9VQ.com.Praxsis.allnotifications",
+        "paths": [ "*", "/" ]
+      }
+    ]
+  }
+}
