@@ -58,13 +58,20 @@ class WordpressAPIClient: APIClient {
         print(code)
         let url = URL(string: "https://public-api.wordpress.com/oauth2/token")
         var request = URLRequest(url: url!)
+
+        let params: [String: String] = ["client_id": Auth.clientId, "redirect_uri": Auth.redirectURI, "client_secret": Auth.clientSecret,"code": code, "grant_type": "authorization_code"]
         
-        let body = WordPressAPIAuthRequest(clientId: Auth.clientId, redirectURI: Auth.redirectURI, clientSecret: Auth.clientSecret, code: code, grantType: "authentication-type")
-        let jsonEncoder = JSONEncoder()
-        let data = try? jsonEncoder.encode(body)
+        var data = [String]()
+        for(key, value) in params
+        {
+            data.append(key + "=\(value)")
+        }
+        let postString = data.map { String($0) }.joined(separator: "&")
         
+        print(postString)
         request.httpMethod = "POST"
-        request.httpBody = data
+        request.httpBody = postString.data(using: .utf8)
+        
         
         
         let session = URLSession.shared.dataTask(with: request) { (data, response, error) in

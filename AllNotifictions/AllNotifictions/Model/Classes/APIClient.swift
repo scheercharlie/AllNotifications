@@ -17,8 +17,7 @@ class APIClient {
         do {
             let jsonEncoder = JSONEncoder()
             let data = try jsonEncoder.encode(body)
-            let json = try? JSONSerialization.jsonObject(with: data, options: [])
-            print(json)
+
             request.httpBody = data
         } catch {
             print("Could not encode Data")
@@ -35,12 +34,6 @@ class APIClient {
             }
             
             let jsonDecoder = JSONDecoder()
-//            print(data)
-//            print(response)
-//            print(error)
-            
-            let json = try? JSONSerialization.jsonObject(with: data, options: [])
-            print(json)
             
             do {
                 let decodedData = try jsonDecoder.decode(ResponseType.self, from: data)
