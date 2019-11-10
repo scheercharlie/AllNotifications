@@ -113,115 +113,6 @@
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="137.94642857142856"/>
         </scene>
-        <!--Login View Controller-->
-        <scene sceneID="mof-Fm-aQ3">
-            <objects>
-                <viewController id="lRB-RM-Ns5" customClass="LoginViewController" customModule="AllNotifictions" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="rLq-l2-7fg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="NLM-ph-7Us">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="not-found" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pvP-Um-13w">
-                                        <rect key="frame" x="82" y="0.0" width="250" height="250"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="250" id="ICM-VQ-STC"/>
-                                            <constraint firstAttribute="width" constant="250" id="JWw-Gt-rnL"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Service Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldT-JS-1H5">
-                                        <rect key="frame" x="20" y="270" width="374" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username/Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7r-4S-dPR">
-                                        <rect key="frame" x="20" y="331" width="374" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="6nD-4d-fMh"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cNc-UV-veh" userLabel="Username">
-                                        <rect key="frame" x="20" y="371" width="374" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="fc8-Ds-SiX"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="username"/>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGG-TE-Nmt" userLabel="Password">
-                                        <rect key="frame" x="20" y="421" width="374" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="65h-aj-D8w"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2c-Lp-nxr" userLabel="Password">
-                                        <rect key="frame" x="20" y="461" width="374" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Sec-Or-Zta"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
-                                    </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="744" verticalCompressionResistancePriority="742" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xlP-lq-u9D">
-                                        <rect key="frame" x="152" y="511" width="110" height="212"/>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9p-wa-dfX">
-                                        <rect key="frame" x="20" y="743" width="374" height="75"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="75" id="Y0N-I7-4hf"/>
-                                        </constraints>
-                                        <state key="normal" title="Login"/>
-                                        <connections>
-                                            <action selector="loginButtonWasTapped:" destination="lRB-RM-Ns5" eventType="touchUpInside" id="GFZ-dd-I9A"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="z2c-Lp-nxr" secondAttribute="trailing" constant="20" symbolic="YES" id="BNC-wr-lO6"/>
-                                    <constraint firstAttribute="trailing" secondItem="c7r-4S-dPR" secondAttribute="trailing" constant="20" symbolic="YES" id="F27-J4-Ztj"/>
-                                    <constraint firstItem="b9p-wa-dfX" firstAttribute="leading" secondItem="NLM-ph-7Us" secondAttribute="leading" constant="20" symbolic="YES" id="QKh-kc-GYj"/>
-                                    <constraint firstItem="ldT-JS-1H5" firstAttribute="leading" secondItem="NLM-ph-7Us" secondAttribute="leading" constant="20" symbolic="YES" id="XVj-B9-KBB"/>
-                                    <constraint firstItem="cNc-UV-veh" firstAttribute="leading" secondItem="NLM-ph-7Us" secondAttribute="leading" constant="20" symbolic="YES" id="Ynb-zQ-PgB"/>
-                                    <constraint firstAttribute="trailing" secondItem="ldT-JS-1H5" secondAttribute="trailing" constant="20" symbolic="YES" id="ZEx-hT-dow"/>
-                                    <constraint firstItem="z2c-Lp-nxr" firstAttribute="leading" secondItem="NLM-ph-7Us" secondAttribute="leading" constant="20" symbolic="YES" id="c7W-HD-tmE"/>
-                                    <constraint firstItem="c7r-4S-dPR" firstAttribute="leading" secondItem="NLM-ph-7Us" secondAttribute="leading" constant="20" symbolic="YES" id="elb-g0-4ST"/>
-                                    <constraint firstAttribute="trailing" secondItem="cNc-UV-veh" secondAttribute="trailing" constant="20" symbolic="YES" id="fth-49-RFW"/>
-                                    <constraint firstAttribute="trailing" secondItem="GGG-TE-Nmt" secondAttribute="trailing" constant="20" symbolic="YES" id="gdD-ay-FaN"/>
-                                    <constraint firstAttribute="trailing" secondItem="b9p-wa-dfX" secondAttribute="trailing" constant="20" symbolic="YES" id="lwA-pA-HIq"/>
-                                    <constraint firstItem="GGG-TE-Nmt" firstAttribute="leading" secondItem="NLM-ph-7Us" secondAttribute="leading" constant="20" symbolic="YES" id="xOU-sD-sAS"/>
-                                </constraints>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="XlB-gP-667" firstAttribute="trailing" secondItem="NLM-ph-7Us" secondAttribute="trailing" id="Xej-Qt-D2z"/>
-                            <constraint firstItem="NLM-ph-7Us" firstAttribute="top" secondItem="XlB-gP-667" secondAttribute="top" id="k5L-hL-72P"/>
-                            <constraint firstItem="XlB-gP-667" firstAttribute="bottom" secondItem="NLM-ph-7Us" secondAttribute="bottom" id="yJ7-uB-AKY"/>
-                            <constraint firstItem="NLM-ph-7Us" firstAttribute="leading" secondItem="XlB-gP-667" secondAttribute="leading" id="zuB-yL-Jgc"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="XlB-gP-667"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="mXa-oK-R6Y"/>
-                    <connections>
-                        <outlet property="logoImage" destination="pvP-Um-13w" id="bOH-hS-wxd"/>
-                        <outlet property="passwordTextField" destination="z2c-Lp-nxr" id="Cp7-Cy-YtR"/>
-                        <outlet property="serviceTitleLabel" destination="ldT-JS-1H5" id="fiy-q4-3W3"/>
-                        <outlet property="usernameTextField" destination="cNc-UV-veh" id="du4-i6-BfG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q3Z-8h-2QA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3252" y="138"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="RkI-bk-F3U">
             <objects>
@@ -278,6 +169,5 @@
     </scenes>
     <resources>
         <image name="check" width="512" height="512"/>
-        <image name="not-found" width="512" height="512"/>
     </resources>
 </document>
