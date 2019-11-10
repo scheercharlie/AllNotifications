@@ -33,13 +33,23 @@ class WordpressAPIClient: APIClient {
         }
     }
     
-    static func authenticate(components: URLComponents) {
+    static func authenticate(components: URLComponents, host: NotificationHost, completion: @escaping (Bool, Error?) -> Void) {
         guard let code = handleAuthenticationResponse(components: components) else {
             print("no auth code")
             return
         }
         
-        codeAuthenticationPostRequest(code: code)
+        codeAuthenticationPostRequest(code: code, host: host) { (success, error) in
+            if error != nil {
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(true, nil)
+                }
+            }
+        }
     }
     
     
@@ -54,22 +64,13 @@ class WordpressAPIClient: APIClient {
     }
     
     
-    private static func codeAuthenticationPostRequest(code: String) {
-        print(code)
-        let params: [String: String] = ["client_id": Auth.clientId, "redirect_uri": Auth.redirectURI, "client_secret": Auth.clientSecret,"code": code, "grant_type": "authorization_code"]
+    private static func codeAuthenticationPostRequest(code: String, host: NotificationHost, completion: @escaping (Bool, Error?) -> Void) {
+        let authRequest = WordPressAPIAuthRequest(clientId: Auth.clientId, redirectURI: Auth.redirectURI, clientSecret: Auth.clientSecret, code: code, grantType: "authorization_code")
         
-        var data = [String]()
-        for(key, value) in params
-        {
-            data.append(key + "=\(value)")
-        }
-        let postString = data.map { String($0) }.joined(separator: "&")
-        
-        guard let stringData = postString.data(using: .utf8) else {
+        guard let stringData = authRequest.getAuthStringAsData() else {
             print("couldn't convert string to data")
             return
         }
-        print(postString)
         
         ApiTaskRequest(url: endpoints.codeAuthentication.url,
                        method: "POST",
@@ -85,10 +86,29 @@ class WordpressAPIClient: APIClient {
                             print("no data returned")
                             return
                         }
-                        print(data.accessToken)
-                        print(data.blogId)
-                        print(data.blogURL)
-                        print(data.tokenType)
+                    
+                        host.token = data.accessToken
+                        host.tokenType = data.tokenType
+                        host.isLoggedIn = true
+                        
+                        if DataController.shared.backgroundContext.hasChanges {
+                            print("has changes")
+                            
+                            do {
+                                try DataController.shared.backgroundContext.save()
+                                DispatchQueue.main.async {
+                                    completion(true, nil)
+                                }
+                            } catch {
+                                print("Save failed")
+                                DispatchQueue.main.async {
+                                    completion(false, error)
+                                }
+                            }
+                            
+                        }
+                        
+                        
         }
     }
 }

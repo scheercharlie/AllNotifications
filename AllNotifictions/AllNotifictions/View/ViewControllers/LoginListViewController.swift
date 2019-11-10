@@ -30,10 +30,16 @@ class LoginListViewController: UIViewController {
         }
     
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 
     @IBAction func skipWasTapped(_ sender: Any) {
         
     }
+    
+    
     
 }
 
@@ -59,6 +65,7 @@ extension LoginListViewController: UITableViewDataSource, UITableViewDelegate {
         
         if service.isLoggedIn {
             tableCell.loggedInCheckBoxImage.alpha = 1
+            tableCell.isUserInteractionEnabled = false
         } else {
             tableCell.loggedInCheckBoxImage.alpha = 0
         }

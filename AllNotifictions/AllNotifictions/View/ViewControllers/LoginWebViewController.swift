@@ -30,10 +30,20 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
             let components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
             switch components.path {
             case "/wordpress/":
-                WordpressAPIClient.authenticate(components: components)
+                WordpressAPIClient.authenticate(components: components, host:selectedService, completion: handleLoginResponse(success:error:))
             default:
                 break
             }
+        }
+    }
+    
+    fileprivate func handleLoginResponse(success: Bool, error: Error?) {
+        if error != nil {
+            //TO DO: Display error
+            print(error)
+        } else {
+            print(success)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 

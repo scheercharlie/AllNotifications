@@ -23,4 +23,22 @@ struct WordPressAPIAuthRequest: Codable {
         case code = "code"
         case grantType = "grant_type"
     }
+    
+    func getAuthStringAsData() -> Data? {
+        let params: [String: String] = ["client_id": clientId, "redirect_uri": redirectURI, "client_secret": clientSecret,"code": code, "grant_type": grantType]
+        
+        var data = [String]()
+        for(key, value) in params
+        {
+            data.append(key + "=\(value)")
+        }
+        let postString = data.map { String($0) }.joined(separator: "&")
+        
+        guard let stringData = postString.data(using: .utf8) else {
+            print("couldn't convert string to data")
+            return nil
+        }
+        
+        return stringData
+    }
 }
