@@ -20,7 +20,7 @@ class GithubAPIClient: APIClient {
         
         var stringValue: String {
             switch self {
-            case: .authentication return "https://github.com/login/oauth/authorize"
+            case .authentication: return "https://github.com/login/oauth/authorize"
             }
         }
         
@@ -28,6 +28,28 @@ class GithubAPIClient: APIClient {
             return URL(string: stringValue)!
         }
         
+    }
+    
+    
+    static func authenticate(url: URL, completion: @escaping (Bool, Error?) -> Void) {
+        let requestBody = GithubAPIAuthRequest(clientId: Auth.clientId, redirectURI: Auth.redirectURI, scope: "Notifications", allowSignup: false)
+        var body = Data()
+        
+        do {
+            let encoder = JSONEncoder()
+            let encodedData = try encoder.encode(requestBody)
+            body = encodedData
+        } catch {
+            print("Could not encode request")
+        }
+        
+        ApiTaskRequest(url: url, method: "GET", responseType: String.self, body: body, errorType: GithubAPIAuthErrorResponse.self) { (data, error) in
+            if error != nil {
+                print("failed")
+            } else {
+                print(data)
+            }
+        }
     }
     
 }
