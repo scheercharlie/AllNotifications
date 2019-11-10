@@ -18,34 +18,24 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
     override func viewDidAppear(_ animated: Bool) {
         webKitView.navigationDelegate = self
         
-        guard let url = getLoginURL() else {
-            displayNoActionAlertAndDissmissView(title: "Error Loading Page", message: "Could not load login page.  Please try again!")
-            
-            return
-        }
-        
-        let request = URLRequest(url: url)
-        
-        webKitView.load(request)
+        loadLoginForSelectedService()
+    
     }
     
-    fileprivate func getLoginURL() -> URL? {
-        var urlString = ""
-        
+    fileprivate func loadLoginForSelectedService() {
         let hostType = selectedService.getTypeFromHostTypeData()
         
         switch hostType?.type {
         case .github:
-            print("github")
+            let request = URLRequest(url: GithubAPIClient.endpoints.authentication.url)
+            print(GithubAPIClient.endpoints.authentication.url)
+            webKitView.load(request)
         case .wordpress:
-            urlString = WordpressAPIClient.endpoints.authentication.stringValue
+            let request = URLRequest(url: WordpressAPIClient.endpoints.authentication.url)
+            webKitView.load(request)
         default:
-            return nil
+            displayNoActionAlertAndDissmissView(title: "Error Loading Page", message: "Could not load login page.  Please try again!")
         }
-        
-        
-        
-        return URL(string: urlString)
     }
         
         func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
@@ -55,6 +45,9 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
                 switch components.path {
                 case "/wordpress/":
                     WordpressAPIClient.authenticate(components: components, host:selectedService, completion: handleLoginResponse(success:error:))
+                case "/github/":
+                    print("Github")
+                    print(components.queryItems)
                 default:
                     break
                 }

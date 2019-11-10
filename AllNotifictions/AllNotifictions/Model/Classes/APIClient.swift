@@ -10,11 +10,12 @@ import Foundation
 
 class APIClient {
     //Base API request that takes no special Headers
-    static func ApiTaskRequest<ResponseType: Decodable, ErrorType: DecodeableError>(url: URL, method: String, responseType: ResponseType.Type, body: Data, errorType: ErrorType.Type, completion: @escaping (ResponseType?,  Error?) -> Void ) {
+    static func ApiTaskRequest<ResponseType: Decodable, ErrorType: DecodeableError>(url: URL, method: String, responseType: ResponseType.Type, body: Data?, errorType: ErrorType.Type, completion: @escaping (ResponseType?,  Error?) -> Void ) {
         var request = URLRequest(url: url)
         request.httpMethod = method
-        request.httpBody = body
-        
+        if let body = body {
+            request.httpBody = body
+        }
         let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 DispatchQueue.main.async {

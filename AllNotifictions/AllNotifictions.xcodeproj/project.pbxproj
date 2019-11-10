@@ -23,6 +23,7 @@
 		BA23F1892377D58000E1BB97 /* GithubAPIAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23F1882377D58000E1BB97 /* GithubAPIAuthResponse.swift */; };
 		BA23F18B2377D6E200E1BB97 /* GithubAPIAuthTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23F18A2377D6E200E1BB97 /* GithubAPIAuthTokenRequest.swift */; };
 		BA23F18D2377D8F200E1BB97 /* GithubAPIAuthErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23F18C2377D8F100E1BB97 /* GithubAPIAuthErrorResponse.swift */; };
+		BA23F18F2377E57B00E1BB97 /* GithubAPIAuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23F18E2377E57B00E1BB97 /* GithubAPIAuthTokenResponse.swift */; };
 		BA2C21D3236924990094D417 /* NotificationHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D2236924990094D417 /* NotificationHost.swift */; };
 		BA2C21D5236949280094D417 /* HostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D4236949280094D417 /* HostType.swift */; };
 		BA2C21D8236960D30094D417 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D623695D7A0094D417 /* DataController.swift */; };
@@ -57,6 +58,7 @@
 		BA23F1882377D58000E1BB97 /* GithubAPIAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPIAuthResponse.swift; sourceTree = "<group>"; };
 		BA23F18A2377D6E200E1BB97 /* GithubAPIAuthTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPIAuthTokenRequest.swift; sourceTree = "<group>"; };
 		BA23F18C2377D8F100E1BB97 /* GithubAPIAuthErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPIAuthErrorResponse.swift; sourceTree = "<group>"; };
+		BA23F18E2377E57B00E1BB97 /* GithubAPIAuthTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPIAuthTokenResponse.swift; sourceTree = "<group>"; };
 		BA2C21D2236924990094D417 /* NotificationHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHost.swift; sourceTree = "<group>"; };
 		BA2C21D4236949280094D417 /* HostType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostType.swift; sourceTree = "<group>"; };
 		BA2C21D623695D7A0094D417 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				BA23F1882377D58000E1BB97 /* GithubAPIAuthResponse.swift */,
 				BA23F18A2377D6E200E1BB97 /* GithubAPIAuthTokenRequest.swift */,
 				BA23F18C2377D8F100E1BB97 /* GithubAPIAuthErrorResponse.swift */,
+				BA23F18E2377E57B00E1BB97 /* GithubAPIAuthTokenResponse.swift */,
 			);
 			path = GithubAPI;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				BAD92C5523767F3E004BB4E7 /* WordPressAPIAuthRequest.swift in Sources */,
 				BAA147EF236E7A0600CF5883 /* WordpressAPIClient.swift in Sources */,
 				BA2C21D3236924990094D417 /* NotificationHost.swift in Sources */,
+				BA23F18F2377E57B00E1BB97 /* GithubAPIAuthTokenResponse.swift in Sources */,
 				BA4345BD236A55F100C5A413 /* LoginViewController.swift in Sources */,
 				BA00E6B12368E7C500CA6125 /* SceneDelegate.swift in Sources */,
 				BA23F18B2377D6E200E1BB97 /* GithubAPIAuthTokenRequest.swift in Sources */,
