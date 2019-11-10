@@ -91,7 +91,15 @@ extension NotificationListViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: constants.notificationCellIdentifier, for: indexPath) as! NotificationCell
         
-        cell.titleLabel.text = "TITLE"
+        guard let fetchedNotifications = notificationFetchedResultsController.fetchedObjects else {
+            print("no fetched objects")
+            return cell
+        }
+        
+        let notificationAtIndexPath = fetchedNotifications[indexPath.row]
+        cell.titleLabel.text = notificationAtIndexPath.title
+        cell.notificationLabel.text = notificationAtIndexPath.body
+        
         
         return cell
     }

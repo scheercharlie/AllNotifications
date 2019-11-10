@@ -13,13 +13,7 @@ class NotificationCell: UITableViewCell {
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var notificationLabel: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
-    
-    
-    @IBAction func likeButtonWasTapped(_ sender: Any) {
-        print("tapped")
-    }
     
     
 }
