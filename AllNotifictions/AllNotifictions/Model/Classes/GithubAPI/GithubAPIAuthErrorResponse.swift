@@ -9,5 +9,13 @@
 import Foundation
 
 struct GithubAPIAuthErrorResponse: DecodeableError {
+    let error: String
+    let returnedDescription: String
+    let errorUri: String
     
+    enum CodingKeys: String, CodingKey {
+        case error
+        case returnedDescription = "error_description"
+        case errorUri = "error_uri"
+    }
 }

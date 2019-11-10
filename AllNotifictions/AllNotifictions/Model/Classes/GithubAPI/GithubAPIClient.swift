@@ -31,13 +31,24 @@ class GithubAPIClient: APIClient {
         }
         
     }
-
+    
     static func authenticate(components: URLComponents, host: NotificationHost, completion: @escaping (Bool, Error?) -> Void) {
-         guard let code = handleAuthenticationResponse(components: components) else {
-             print("no auth code")
-             return
-         }
-         
+        guard let code = handleAuthenticationResponse(components: components) else {
+            print("no auth code")
+            return
+        }
+        
+        codeAuthenticationPostRequest(code: code, host: host) { (success, error) in
+            if error != nil {
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(true, nil)
+                }
+            }
+        }
     }
     
     private static func handleAuthenticationResponse(components: URLComponents) -> String? {
@@ -58,52 +69,47 @@ class GithubAPIClient: APIClient {
                                                     clientSecret: Auth.clientSecret,
                                                     code: code,
                                                     redirectURI: Auth.redirectURI)
-        var body = Data()
-        
-        do {
-            let encoder = JSONEncoder()
-            let encodedRequest = try encoder.encode(authRequest)
-            body = encodedRequest
-        } catch {
-            print("Could not encode request")
-            //TO DO: handle failure
+        guard let body = authRequest.getAuthStringAsData() else {
+            return
         }
         
-        let headers: [HTTPHeaders] = [HTTPHeaders(value: "application/json", field: "Content-Type")]
-        
-        ApiTaskRequestWithHeaders(url: endpoints.tokenAuthentication.url, method: "POST", responseType: GithubAPIAuthTokenResponse.self, body: body, headers: headers, errorType: GithubAPIAuthErrorResponse.self) { (data, error) in
-            
-            if let error = error as? GithubAPIAuthErrorResponse {
-                print("error")
-                //To DO: figure out error for GH api and create response
-            }
-            guard let data = data else {
-                print("Github API Token request failed")
-                //TO DO: handle error better
-                return
-            }
-            
-            host.token = data.token
-            host.tokenType = data.tokenType
-            host.isLoggedIn = true
-            
-            if DataController.shared.backgroundContext.hasChanges {
-                print("has changes")
-                
-                do {
-                    try DataController.shared.backgroundContext.save()
-                    DispatchQueue.main.async {
-                        completion(true, nil)
-                    }
-                } catch {
-                    print("Save failed")
-                    DispatchQueue.main.async {
-                        completion(false, error)
-                    }
-                }
-                
-            }
-            
+        ApiTaskRequestWithHeaders(url: endpoints.tokenAuthentication.url,
+                                  method: "POST",
+                                  responseType: GithubAPIAuthTokenResponse.self,
+                                  body: body,
+                                  headers: [HTTPHeaders(value: "application/json", field: "Accept")],
+                                  errorType: GithubAPIAuthErrorResponse.self) {
+                                    (data, error) in
+                                    
+                                    if let error = error as? WordPressAPIAuthErrorResponse {
+                                        print(error.returnedDescription)
+                                    }
+                                    
+                                    guard let data = data else {
+                                        return
+                                    }
+                                    
+                                    host.token = data.token
+                                    host.tokenType = data.tokenType
+                                    host.isLoggedIn = true
+                                    
+                                    if DataController.shared.backgroundContext.hasChanges {
+                                        print("has changes")
+                                        
+                                        do {
+                                            try DataController.shared.backgroundContext.save()
+                                            DispatchQueue.main.async {
+                                                completion(true, nil)
+                                            }
+                                        } catch {
+                                            print("Save failed")
+                                            DispatchQueue.main.async {
+                                                completion(false, error)
+                                            }
+                                        }
+                                        
+                                    }
+                                    
         }
     }
 }

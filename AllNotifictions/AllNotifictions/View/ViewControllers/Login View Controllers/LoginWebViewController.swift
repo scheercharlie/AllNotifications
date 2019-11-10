@@ -47,7 +47,7 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
                     WordpressAPIClient.authenticate(components: components, host:selectedService, completion: handleLoginResponse(success:error:))
                 case "/github/":
                     print("Github")
-                    print(components.queryItems)
+                    GithubAPIClient.authenticate(components: components, host: selectedService, completion: handleLoginResponse(success:error:))
                 default:
                     break
                 }

@@ -78,7 +78,7 @@ class WordpressAPIClient: APIClient {
                        body: stringData,
                        errorType: WordPressAPIAuthErrorResponse.self) {
                         (data, error) in
-                  
+                        
                         if let error = error as? WordPressAPIAuthErrorResponse {
                             print(error.returnedDescription)
                         }
@@ -86,7 +86,7 @@ class WordpressAPIClient: APIClient {
                             print("no data returned")
                             return
                         }
-                    
+                        
                         host.token = data.accessToken
                         host.tokenType = data.tokenType
                         host.isLoggedIn = true
