@@ -16,6 +16,7 @@
 		BA00E6BE2368E7CC00CA6125 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA00E6BC2368E7CC00CA6125 /* LaunchScreen.storyboard */; };
 		BA00E6CC2368E93B00CA6125 /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA00E6CB2368E93B00CA6125 /* Notification.storyboard */; };
 		BA00E6CF2368EDAB00CA6125 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA00E6CE2368EDAB00CA6125 /* LoginCell.swift */; };
+		BA23F17D2377A74200E1BB97 /* DecodeableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23F17C2377A74200E1BB97 /* DecodeableError.swift */; };
 		BA2C21D3236924990094D417 /* NotificationHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D2236924990094D417 /* NotificationHost.swift */; };
 		BA2C21D5236949280094D417 /* HostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D4236949280094D417 /* HostType.swift */; };
 		BA2C21D8236960D30094D417 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C21D623695D7A0094D417 /* DataController.swift */; };
@@ -43,6 +44,7 @@
 		BA00E6BF2368E7CC00CA6125 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA00E6CB2368E93B00CA6125 /* Notification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
 		BA00E6CE2368EDAB00CA6125 /* LoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
+		BA23F17C2377A74200E1BB97 /* DecodeableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeableError.swift; sourceTree = "<group>"; };
 		BA2C21D2236924990094D417 /* NotificationHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHost.swift; sourceTree = "<group>"; };
 		BA2C21D4236949280094D417 /* HostType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostType.swift; sourceTree = "<group>"; };
 		BA2C21D623695D7A0094D417 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			children = (
 				BA2C21D1236923CE0094D417 /* Classes */,
 				BA00E6CA2368E8F300CA6125 /* DataModels */,
+				BA23F17C2377A74200E1BB97 /* DecodeableError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				BA4345BD236A55F100C5A413 /* LoginViewController.swift in Sources */,
 				BA00E6B12368E7C500CA6125 /* SceneDelegate.swift in Sources */,
 				BAD92C5323767E17004BB4E7 /* WordPressAPIAuthResponse.swift in Sources */,
+				BA23F17D2377A74200E1BB97 /* DecodeableError.swift in Sources */,
 				BAA147EB236E6D8100CF5883 /* APIClient.swift in Sources */,
 				BAA147ED236E70CC00CF5883 /* HTTPHeaders.swift in Sources */,
 			);

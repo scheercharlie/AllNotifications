@@ -8,6 +8,12 @@
 
 import Foundation
 
-struct WordPressAPIAuthErrorResponse: Decodable {
+struct WordPressAPIAuthErrorResponse: DecodeableError {
+    let error: String
+    let returnedDescription: String
     
+    enum CodingKeys: String, CodingKey {
+        case error
+        case returnedDescription = "error_description"
+    }
 }

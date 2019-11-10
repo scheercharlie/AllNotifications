@@ -10,25 +10,16 @@ import Foundation
 
 class APIClient {
     //Base API request that takes no special Headers
-    static func ApiTaskRequest<RequestType: Encodable, ResponseType: Decodable, ErrorResponseType: Decodable>(url: URL, method: String, responseType: ResponseType.Type, body: RequestType, errorResponseType: ErrorResponseType.Type, completion: @escaping (ResponseType?, ErrorResponseType?, Error?) -> Void ) {
+    static func ApiTaskRequest<ResponseType: Decodable, ErrorType: DecodeableError>(url: URL, method: String, responseType: ResponseType.Type, body: Data, errorType: ErrorType.Type, completion: @escaping (ResponseType?,  Error?) -> Void ) {
         var request = URLRequest(url: url)
         request.httpMethod = method
-        
-        do {
-            let jsonEncoder = JSONEncoder()
-            let data = try jsonEncoder.encode(body)
-
-            request.httpBody = data
-        } catch {
-            print("Could not encode Data")
-            print(error.localizedDescription)
-        }
+        request.httpBody = body
         
         let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 DispatchQueue.main.async {
                     //If fetching data has failed return system error
-                    completion(nil, nil, error)
+                    completion(nil, error)
                 }
                 return
             }
@@ -39,14 +30,15 @@ class APIClient {
                 let decodedData = try jsonDecoder.decode(ResponseType.self, from: data)
                 DispatchQueue.main.async {
                     //If receiving data and decoding data succeeds, return data
-                    completion(decodedData, nil, nil)
+                    completion(decodedData, nil)
                 }
             } catch {
                 do {
-                    let errorResponse = try jsonDecoder.decode(ErrorResponseType.self, from: data)
+                    let errorResponse = try jsonDecoder.decode(ErrorType.self, from: data)
                     DispatchQueue.main.async {
                         //If receiving data succeeds but decoding fails, return decoding error
-                        completion(nil, errorResponse, nil)
+                        print(errorResponse)
+                        completion(nil, errorResponse)
                     }
                 } catch {
                     print(error)
@@ -57,7 +49,7 @@ class APIClient {
     }
     
     //Base API request including HTTP headers
-    static func ApiTaskRequestWithHeaders<RequestType: Encodable, ResponseType: Decodable, ErrorResponseType: Decodable>(url: URL, method: String, responseType: ResponseType.Type, body: RequestType, errorResponseType: ErrorResponseType.Type, headers: [HTTPHeaders], completion: @escaping (ResponseType?, ErrorResponseType?, Error?) -> Void) {
+    static func ApiTaskRequestWithHeaders<ResponseType: Decodable, ErrorType: DecodeableError>(url: URL, method: String, responseType: ResponseType.Type, body: Data, headers: [HTTPHeaders], errorType: ErrorType.Type, completion: @escaping (ResponseType? , Error?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = method
         
@@ -78,7 +70,7 @@ class APIClient {
             guard let data = data else {
                 DispatchQueue.main.async {
                     //If fetching data has failed return system error
-                    completion(nil, nil, error)
+                    completion(nil, error)
                 }
                 return
             }
@@ -89,14 +81,14 @@ class APIClient {
                 let decodedData = try jsonDecoder.decode(ResponseType.self, from: data)
                 DispatchQueue.main.async {
                     //If receiving data and decoding data succeeds, return data
-                    completion(decodedData, nil, nil)
+                    completion(decodedData, nil)
                 }
             } catch {
                 do {
-                    let errorResponse = try jsonDecoder.decode(ErrorResponseType.self, from: data)
+                    let errorResponse = try jsonDecoder.decode(ErrorType.self, from: data)
                     DispatchQueue.main.async {
                         //If receiving data succeeds but decoding fails, return decoding error
-                        completion(nil, errorResponse, nil)
+                        completion(nil, errorResponse)
                     }
                 } catch {
                     print(error)

@@ -56,9 +56,6 @@ class WordpressAPIClient: APIClient {
     
     private static func codeAuthenticationPostRequest(code: String) {
         print(code)
-        let url = URL(string: "https://public-api.wordpress.com/oauth2/token")
-        var request = URLRequest(url: url!)
-
         let params: [String: String] = ["client_id": Auth.clientId, "redirect_uri": Auth.redirectURI, "client_secret": Auth.clientSecret,"code": code, "grant_type": "authorization_code"]
         
         var data = [String]()
@@ -68,18 +65,30 @@ class WordpressAPIClient: APIClient {
         }
         let postString = data.map { String($0) }.joined(separator: "&")
         
-        print(postString)
-        request.httpMethod = "POST"
-        request.httpBody = postString.data(using: .utf8)
-        
-        
-        
-        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let data = data {
-                let json = try? JSONSerialization.jsonObject(with: data, options: [])
-                print(json)
-            }
+        guard let stringData = postString.data(using: .utf8) else {
+            print("couldn't convert string to data")
+            return
         }
-        session.resume()
+        print(postString)
+        
+        ApiTaskRequest(url: endpoints.codeAuthentication.url,
+                       method: "POST",
+                       responseType: WordPressAPIAuthResponse.self,
+                       body: stringData,
+                       errorType: WordPressAPIAuthErrorResponse.self) {
+                        (data, error) in
+                  
+                        if let error = error as? WordPressAPIAuthErrorResponse {
+                            print(error.returnedDescription)
+                        }
+                        guard let data = data else {
+                            print("no data returned")
+                            return
+                        }
+                        print(data.accessToken)
+                        print(data.blogId)
+                        print(data.blogURL)
+                        print(data.tokenType)
+        }
     }
 }
