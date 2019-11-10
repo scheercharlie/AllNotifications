@@ -118,21 +118,30 @@ class WordpressAPIClient: APIClient {
         }
     }
     
-    static func getNotifications(token: String, completion: @escaping (Bool, Error?) -> Void) {
+    static func getNotifications(token: String, host: NotificationHost, completion: @escaping (Bool, Error?) -> Void) {
         let headers = [HTTPHeaders(value: "Bearer \(token)", field: "Authorization"), HTTPHeaders(value: "application/json", field: "Content-Type")]
         
         ApiTaskRequestWithHeaders(url: endpoints.getNotifications.url, method: "GET", responseType: WordPressAPINotificationResponse.self, body: nil, headers: headers, errorType: WordPressAPINotificationErrorResponse.self) { (data, error) in
-            print(data)
-            print(error)
             if let notes = data?.notes {
                 for note in notes {
                     let newNotification = Notification(context: DataController.shared.viewContext)
-                    newNotification.id = Int16(note.id)
-                    newNotification.type = note.type
-                    newNotification.title = note.title
+                    newNotification.setupNewWordPressNotificationFrom(note, host: host)
                     
-//                    newNotification.url = note.url
+
                     
+                }
+                
+                do {
+                    try DataController.shared.backgroundContext.save()
+                    print("did save")
+                    DispatchQueue.main.async {
+                        completion(true, nil)
+                    }
+                } catch {
+                    print("Couldn't save WordPress notifications")
+                    DispatchQueue.main.async {
+                        completion(false, nil)
+                    }
                 }
             }
         }

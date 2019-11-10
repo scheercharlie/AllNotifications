@@ -12,36 +12,42 @@ import CoreData
 
 class NotificationListViewController: UIViewController {
     @IBOutlet weak var activityView: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
     
     var serviceFetchedResultsController: NSFetchedResultsController<NotificationHost>!
-    
+    var notificationFetchedResultsController: NSFetchedResultsController<Notification>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchSavedServices()
+        
+        fetchNotifications()
         
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationItem.hidesBackButton = true
-        var token = ""
         if let services = serviceFetchedResultsController.fetchedObjects {
+            print(services.count)
             for service in services {
                 if service.isLoggedIn {
-                    print(service.title)
-                    print(service.token)
-                    if service.title == "WordPress" {
-                        print("Is WordPress")
-                        token = service.token!
+                    switch service.title {
+                    case "WordPress":
+                        print("WordPress")
+                        //TO DO: handle the force unwrapping better
+                        WordpressAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
+                            if success {
+                                print("yay")
+                                self.tableView.reloadData()
+                            }
+                        }
+                    default:
+                        print("break")
+                        break
                     }
+                    
                 }
-            }
-        }
-        
-        WordpressAPIClient.getNotifications(token: token) { (success, error) in
-            if success {
-                print("YAY")
             }
         }
     }
@@ -57,16 +63,35 @@ class NotificationListViewController: UIViewController {
         }
     }
     
+    fileprivate func fetchNotifications() {
+        let notificationFetchRequest: NSFetchRequest<Notification> = Notification.fetchRequest()
+        notificationFetchRequest.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: true)]
+        notificationFetchedResultsController = NSFetchedResultsController(fetchRequest: notificationFetchRequest, managedObjectContext: DataController.shared.viewContext, sectionNameKeyPath: nil, cacheName: "notification")
+        
+        do {
+            try notificationFetchedResultsController.performFetch()
+            
+        } catch {
+            print("Could not fetch notifications")
+        }
+    }
+    
 }
 
 extension NotificationListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        var noteCount = 0
+        if let fetchedNotes = notificationFetchedResultsController.fetchedObjects {
+            noteCount = fetchedNotes.count
+        }
+        
+        return noteCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: constants.notificationCellIdentifier, for: indexPath) as! NotificationCell
         
+        cell.titleLabel.text = "TITLE"
         
         return cell
     }

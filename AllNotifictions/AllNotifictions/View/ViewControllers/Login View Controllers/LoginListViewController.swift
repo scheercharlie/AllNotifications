@@ -50,7 +50,7 @@ class LoginListViewController: UIViewController {
     @IBAction func skipWasTapped(_ sender: Any) {
         print("tapped")
         
-        
+        finishLoggingIn()
     }
     
     fileprivate func finishLoggingIn() {

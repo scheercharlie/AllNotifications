@@ -80,7 +80,7 @@
                                             <outlet property="likeButton" destination="Fdm-B3-hIa" id="Ana-7K-Gks"/>
                                             <outlet property="logoImageView" destination="qhD-tX-11e" id="Jib-I3-cGl"/>
                                             <outlet property="notificationLabel" destination="HVB-5s-Ks5" id="0VR-Sz-a1C"/>
-                                            <outlet property="titleLabel" destination="Jfl-gG-cAD" id="q5T-me-fDh"/>
+                                            <outlet property="titleLabel" destination="6q6-hV-TGz" id="axe-ou-Rkj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -106,6 +106,7 @@
                     <navigationItem key="navigationItem" id="GC3-f0-GEL"/>
                     <connections>
                         <outlet property="activityView" destination="AUd-bX-GbD" id="spV-bz-QtL"/>
+                        <outlet property="tableView" destination="sDJ-uh-SR9" id="o63-TH-XJ5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSX-HT-SxT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -10,8 +10,9 @@ import Foundation
 import CoreData
 
 extension Notification {
-    func setupNewNotificationFrom(_ note: WordPressNote) {
-        self.id = Int16(note.id)
+    func setupNewWordPressNotificationFrom(_ note: WordPressNote, host: NotificationHost) {
+        self.id = String(note.id) 
+        
         self.title = note.title
         self.type = note.type
         
@@ -26,7 +27,7 @@ extension Notification {
         }
         
         if let meta = note.meta {
-            self.siteID = Int16(meta.ids.site)
+            self.siteID = String(meta.ids.site)
         }
         
         var bodyText = ""
@@ -41,5 +42,7 @@ extension Notification {
         if let date = dateFormatter.date(from: note.timestamp) {
             self.timeStamp = date
         }
+        
+        self.notificationsHost = host
     }
 }
