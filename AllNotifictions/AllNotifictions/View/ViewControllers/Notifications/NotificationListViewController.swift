@@ -65,7 +65,7 @@ class NotificationListViewController: UIViewController {
     
     fileprivate func fetchNotifications() {
         let notificationFetchRequest: NSFetchRequest<Notification> = Notification.fetchRequest()
-        notificationFetchRequest.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: true)]
+        notificationFetchRequest.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: false)]
         notificationFetchedResultsController = NSFetchedResultsController(fetchRequest: notificationFetchRequest, managedObjectContext: DataController.shared.viewContext, sectionNameKeyPath: nil, cacheName: "notification")
         
         do {
@@ -100,10 +100,17 @@ extension NotificationListViewController: UITableViewDelegate, UITableViewDataSo
         cell.titleLabel.text = notificationAtIndexPath.title
         cell.notificationLabel.text = notificationAtIndexPath.body
         
+        let servicetitle = notificationAtIndexPath.notificationsHost?.title
+        
+        let image = UIImage(named: servicetitle!)
+        cell.logoImageView.image = image
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160
+    }
     
 }
 
