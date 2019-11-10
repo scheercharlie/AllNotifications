@@ -19,14 +19,26 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
         webKitView.navigationDelegate = self
         
         guard let url = getLoginURL() else {
-            //TO DO: Display alert that url could not be loaded
-            self.navigationController?.popViewController(animated: true)
+            displayLoginFailedAlert(title: "Error Loading Page", message: "Could not load login page, please try again")
+            
             return
         }
         
         let request = URLRequest(url: url)
         
         webKitView.load(request)
+    }
+    
+    fileprivate func displayLoginFailedAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "title", style: .cancel) { (action) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        alert.addAction(alertAction)
+        
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     fileprivate func getLoginURL() -> URL? {
