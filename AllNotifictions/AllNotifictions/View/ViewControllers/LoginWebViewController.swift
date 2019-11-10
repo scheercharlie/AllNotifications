@@ -75,10 +75,8 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
         
         fileprivate func handleLoginResponse(success: Bool, error: Error?) {
             if error != nil {
-                //TO DO: Display error
-                print(error)
+                displayNoActionAlert(title: "Login Failed", message: error!.localizedDescription)
             } else {
-                print(success)
                 self.navigationController?.popViewController(animated: true)
             }
         }
