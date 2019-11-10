@@ -17,6 +17,7 @@ class LoginListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         let request: NSFetchRequest<NotificationHost> = NotificationHost.fetchRequest()
         let sortDescriptor = NSSortDescriptor.init(key: "objectID", ascending: true)
         request.sortDescriptors = [sortDescriptor]
@@ -28,26 +29,44 @@ class LoginListViewController: UIViewController {
             displayNoActionAlert(title: "No Services Found", message: "Could not fetch saved services, please try again")
         }
     
+        if let fetchedObjects = fetchedResultsController.fetchedObjects {
+            var loggedIntoAllSources = true
+            for service in fetchedObjects {
+                if service.isLoggedIn == false {
+                    loggedIntoAllSources = false
+                }
+            }
+            if loggedIntoAllSources {
+               finishLoggingIn()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
+    
     }
 
     @IBAction func skipWasTapped(_ sender: Any) {
         print("tapped")
-        UserDefaults.standard.set(true, forKey: AppConstants.isFinishedLoggingIn)
         
-        let storyboard = UIStoryboard(name: AppConstants.notificationStoryboard, bundle: Bundle.main)
-        if let vc = storyboard.instantiateInitialViewController() {
-            self.navigationController?.pushViewController(vc, animated: true)
-        
-            
-        }
         
     }
     
+    fileprivate func finishLoggingIn() {
+        UserDefaults.standard.set(true, forKey: AppConstants.isFinishedLoggingIn)
+        let storyboard = UIStoryboard(name: AppConstants.notificationStoryboard, bundle: Bundle.main)
+        if let vc = storyboard.instantiateInitialViewController() {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
+    fileprivate func presentNotificationViewController() {
+        let storyboard = UIStoryboard(name: AppConstants.notificationStoryboard, bundle: Bundle.main)
+        if let vc = storyboard.instantiateInitialViewController() {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
 }
 

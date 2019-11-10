@@ -84,7 +84,7 @@
                                         <rect key="frame" x="0.0" y="730" width="414" height="44"/>
                                         <items>
                                             <navigationItem id="j4C-bG-uXc">
-                                                <barButtonItem key="rightBarButtonItem" title="Skip" id="QMA-8G-M1t">
+                                                <barButtonItem key="rightBarButtonItem" title="Finish" id="QMA-8G-M1t">
                                                     <connections>
                                                         <action selector="skipWasTapped:" destination="BYZ-38-t0r" id="ARp-D3-Kqq"/>
                                                     </connections>
