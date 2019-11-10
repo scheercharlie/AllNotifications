@@ -50,8 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             try frc.performFetch()
         } catch {
-            //TO DO: Handle the fatelError better
-            fatalError()
+            fatalError("Could not fetch saved services")
         }
         
         return frc

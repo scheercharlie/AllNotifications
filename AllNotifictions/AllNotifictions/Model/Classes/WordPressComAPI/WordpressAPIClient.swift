@@ -65,7 +65,11 @@ class WordpressAPIClient: APIClient {
     
     
     private static func codeAuthenticationPostRequest(code: String, host: NotificationHost, completion: @escaping (Bool, Error?) -> Void) {
-        let authRequest = WordPressAPIAuthRequest(clientId: Auth.clientId, redirectURI: Auth.redirectURI, clientSecret: Auth.clientSecret, code: code, grantType: "authorization_code")
+        let authRequest = WordPressAPIAuthRequest(clientId: Auth.clientId,
+                                                  redirectURI: Auth.redirectURI,
+                                                  clientSecret: Auth.clientSecret,
+                                                  code: code,
+                                                  grantType: "authorization_code")
         
         guard let stringData = authRequest.getAuthStringAsData() else {
             print("couldn't convert string to data")

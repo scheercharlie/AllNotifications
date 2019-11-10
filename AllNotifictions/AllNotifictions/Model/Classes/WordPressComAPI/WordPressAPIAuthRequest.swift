@@ -6,7 +6,6 @@
 //  Copyright © 2019 Praxsis. All rights reserved.
 //
 
-//TO DO: Check if using, if not remove
 import Foundation
 
 struct WordPressAPIAuthRequest: Codable {

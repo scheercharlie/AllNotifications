@@ -25,8 +25,7 @@ class LoginListViewController: UIViewController {
         do {
             try fetchedResultsController.performFetch()
         } catch {
-            //TO DO: Handle the error better
-            print("Fetch failed")
+            displayNoActionAlert(title: "No Services Found", message: "Could not fetch saved services, please try again")
         }
     
     }

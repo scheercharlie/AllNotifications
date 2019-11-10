@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-
-//TO DO: figure out how to require view to be vertical
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var logoImage: UIImageView!
@@ -24,7 +22,10 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view loaded")
+        
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        
         if let selectedService = selectedService {
             serviceTitleLabel.text = selectedService.title
         }
@@ -34,6 +35,10 @@ class LoginViewController: UIViewController {
         passwordTextField.delegate = textFieldDelegate
         
         
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
     }
     
     @IBAction func loginButtonWasTapped(_ sender: Any) {

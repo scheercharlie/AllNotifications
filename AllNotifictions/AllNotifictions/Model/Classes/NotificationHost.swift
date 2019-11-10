@@ -18,12 +18,17 @@ extension NotificationHost {
     }
     
     func getTypeFromHostTypeData() -> HostType? {
-        //TO DO: Handle try better
         guard let hostTypeData = self.hostType else {
             return nil
         }
         let decoder = PropertyListDecoder()
-        let service = try! decoder.decode(HostType.self, from: hostTypeData)
+        var service: HostType!
+        do {
+           let decodedService = try decoder.decode(HostType.self, from: hostTypeData)
+            service = decodedService
+        } catch {
+            return nil
+        }
         
         return service
     }
