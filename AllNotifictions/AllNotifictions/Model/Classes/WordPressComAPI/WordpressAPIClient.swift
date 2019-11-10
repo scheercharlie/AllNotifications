@@ -20,11 +20,13 @@ class WordpressAPIClient: APIClient {
         
         case authentication
         case codeAuthentication
+        case getNotifications
         
         var stringValue: String {
             switch self {
             case .authentication: return "https://public-api.wordpress.com/oauth2/authorize?client_id=\(Auth.clientId)&redirect_uri=\(Auth.redirectURI)&response_type=code"
             case .codeAuthentication: return "https://public-api.wordpress.com/oauth2/token"
+            case .getNotifications: return "https://public-api.wordpress.com/rest/v1.1/notifications/"
             }
         }
         
@@ -115,4 +117,13 @@ class WordpressAPIClient: APIClient {
                         
         }
     }
+    
+    static func getNotifications(token: String, completion: @escaping (Bool, Error?) -> Void) {
+        let headers = [HTTPHeaders(value: token, field: "Authorization: Bearer")]
+        
+        ApiTaskRequestWithHeaders(url: endpoints.getNotifications.url, method: "GET", responseType: WordPressAPINotificationResponse.self, body: nil, headers: headers, errorType: WordPressAPINotificationErrorResponse.self) { (data, error) in
+            //Do api task
+        }
+    }
+    
 }

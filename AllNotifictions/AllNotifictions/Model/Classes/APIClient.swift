@@ -50,10 +50,12 @@ class APIClient {
     }
     
     //Base API request including HTTP headers
-    static func ApiTaskRequestWithHeaders<ResponseType: Decodable, ErrorType: DecodeableError>(url: URL, method: String, responseType: ResponseType.Type, body: Data, headers: [HTTPHeaders], errorType: ErrorType.Type, completion: @escaping (ResponseType? , Error?) -> Void) {
+    static func ApiTaskRequestWithHeaders<ResponseType: Decodable, ErrorType: DecodeableError>(url: URL, method: String, responseType: ResponseType.Type, body: Data?, headers: [HTTPHeaders], errorType: ErrorType.Type, completion: @escaping (ResponseType? , Error?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = method
-        request.httpBody = body
+        if let body = body {
+            request.httpBody = body
+        }
         for header in headers {
             request.addValue(header.value, forHTTPHeaderField: header.field)
         }
