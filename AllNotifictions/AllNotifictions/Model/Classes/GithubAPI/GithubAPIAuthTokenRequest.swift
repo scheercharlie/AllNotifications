@@ -1,5 +1,5 @@
 //
-//  GithubAPIAuthRequest.swift
+//  GithubAPIAuthTokenRequest.swift
 //  AllNotifictions
 //
 //  Created by Charlie Scheer on 11/9/19.
@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct GithubAPIAuthRequest: Encodable {
+struct GithubAPIAuthTokenRequest: Encodable {
     let clientId: String
+    let clientSecret: String
+    let code: String
     let redirectURI: String
-    let scope: String
-    let allowSignup: Bool
     
     enum CodingKeys: String, CodingKey {
         case clientId = "client_id"
+        case clientSecret = "client_secret"
         case redirectURI = "redirect_uri"
-        case scope
-        case allowSignup = "allow_signup"
+        case code
     }
 }
