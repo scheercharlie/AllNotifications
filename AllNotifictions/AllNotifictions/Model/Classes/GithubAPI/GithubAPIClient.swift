@@ -69,8 +69,41 @@ class GithubAPIClient: APIClient {
             //TO DO: handle failure
         }
         
-        ApiTaskRequest(url: endpoints.tokenAuthentication.url, method: "POST", responseType: GithubAPIAuthTokenResponse.self, body: body, errorType: GithubAPIAuthErrorResponse.self) { (data, error) in
-            //Code
+        let headers: [HTTPHeaders] = [HTTPHeaders(value: "application/json", field: "Content-Type")]
+        
+        ApiTaskRequestWithHeaders(url: endpoints.tokenAuthentication.url, method: "POST", responseType: GithubAPIAuthTokenResponse.self, body: body, headers: headers, errorType: GithubAPIAuthErrorResponse.self) { (data, error) in
+            
+            if let error = error as? GithubAPIAuthErrorResponse {
+                print("error")
+                //To DO: figure out error for GH api and create response
+            }
+            guard let data = data else {
+                print("Github API Token request failed")
+                //TO DO: handle error better
+                return
+            }
+            
+            host.token = data.token
+            host.tokenType = data.tokenType
+            host.isLoggedIn = true
+            
+            if DataController.shared.backgroundContext.hasChanges {
+                print("has changes")
+                
+                do {
+                    try DataController.shared.backgroundContext.save()
+                    DispatchQueue.main.async {
+                        completion(true, nil)
+                    }
+                } catch {
+                    print("Save failed")
+                    DispatchQueue.main.async {
+                        completion(false, error)
+                    }
+                }
+                
+            }
+            
         }
     }
 }
