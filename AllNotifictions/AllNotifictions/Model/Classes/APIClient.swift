@@ -72,6 +72,9 @@ class APIClient {
             
             let jsonDecoder = JSONDecoder()
             
+//            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+//            print(json)
+            
             do {
                 let decodedData = try jsonDecoder.decode(ResponseType.self, from: data)
                 DispatchQueue.main.async {
@@ -80,6 +83,7 @@ class APIClient {
                 }
             } catch {
                 do {
+                    print(error)
                     let errorResponse = try jsonDecoder.decode(ErrorType.self, from: data)
                     DispatchQueue.main.async {
                         //If receiving data succeeds but decoding fails, return decoding error

@@ -119,10 +119,11 @@ class WordpressAPIClient: APIClient {
     }
     
     static func getNotifications(token: String, completion: @escaping (Bool, Error?) -> Void) {
-        let headers = [HTTPHeaders(value: token, field: "Authorization: Bearer")]
+        let headers = [HTTPHeaders(value: "Bearer \(token)", field: "Authorization"), HTTPHeaders(value: "application/json", field: "Content-Type")]
         
         ApiTaskRequestWithHeaders(url: endpoints.getNotifications.url, method: "GET", responseType: WordPressAPINotificationResponse.self, body: nil, headers: headers, errorType: WordPressAPINotificationErrorResponse.self) { (data, error) in
-            //Do api task
+            print(data)
+            print(error)
         }
     }
     

@@ -25,10 +25,29 @@ class NotificationListViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationItem.hidesBackButton = true
+        var token = ""
+        if let services = serviceFetchedResultsController.fetchedObjects {
+            for service in services {
+                if service.isLoggedIn {
+                    print(service.title)
+                    print(service.token)
+                    if service.title == "WordPress" {
+                        print("Is WordPress")
+                        token = service.token!
+                    }
+                }
+            }
+        }
+        
+        WordpressAPIClient.getNotifications(token: token) { (success, error) in
+            if success {
+                print("YAY")
+            }
+        }
     }
     
     fileprivate func fetchSavedServices() {
-        let serviceFetchRequest = NSFetchRequest<NotificationHost>()
+        let serviceFetchRequest: NSFetchRequest<NotificationHost> = NotificationHost.fetchRequest()
         serviceFetchRequest.sortDescriptors = [NSSortDescriptor(key: "objectID", ascending: true)]
         serviceFetchedResultsController = NSFetchedResultsController(fetchRequest: serviceFetchRequest, managedObjectContext: DataController.shared.viewContext, sectionNameKeyPath: nil, cacheName: "service")
         do {
