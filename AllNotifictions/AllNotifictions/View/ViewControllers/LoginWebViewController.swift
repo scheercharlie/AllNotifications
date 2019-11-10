@@ -19,7 +19,7 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
         webKitView.navigationDelegate = self
         
         guard let url = getLoginURL() else {
-            displayLoginFailedAlert(title: "Error Loading Page", message: "Could not load login page, please try again")
+            displayNoActionAlertAndDissmissView(title: "Error Loading Page", message: "Could not load login page.  Please try again!")
             
             return
         }
@@ -27,18 +27,6 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
         let request = URLRequest(url: url)
         
         webKitView.load(request)
-    }
-    
-    fileprivate func displayLoginFailedAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "title", style: .cancel) { (action) in
-            self.navigationController?.popViewController(animated: true)
-        }
-        
-        alert.addAction(alertAction)
-        
-        self.present(alert, animated: true, completion: nil)
-        
     }
     
     fileprivate func getLoginURL() -> URL? {
@@ -75,7 +63,7 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
         
         fileprivate func handleLoginResponse(success: Bool, error: Error?) {
             if error != nil {
-                displayNoActionAlert(title: "Login Failed", message: error!.localizedDescription)
+                displayNoActionAlertAndDissmissView(title: "Login Failed", message: error!.localizedDescription)
             } else {
                 self.navigationController?.popViewController(animated: true)
             }
