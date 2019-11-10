@@ -8,12 +8,17 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class NotificationListViewController: UIViewController {
     @IBOutlet weak var activityView: UIActivityIndicatorView!
     
+    var serviceFetchedResultsController: NSFetchedResultsController<NotificationHost>!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchSavedServices()
         
         
     }
@@ -22,6 +27,16 @@ class NotificationListViewController: UIViewController {
         self.navigationController?.navigationItem.hidesBackButton = true
     }
     
+    fileprivate func fetchSavedServices() {
+        let serviceFetchRequest = NSFetchRequest<NotificationHost>()
+        serviceFetchRequest.sortDescriptors = [NSSortDescriptor(key: "objectID", ascending: true)]
+        serviceFetchedResultsController = NSFetchedResultsController(fetchRequest: serviceFetchRequest, managedObjectContext: DataController.shared.viewContext, sectionNameKeyPath: nil, cacheName: "service")
+        do {
+            try serviceFetchedResultsController.performFetch()
+        } catch {
+            print("Could not fetch services")
+        }
+    }
     
 }
 
