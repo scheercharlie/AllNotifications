@@ -13,6 +13,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        print(UserDefaults.standard.bool(forKey: AppConstants.isFinishedLoggingIn))
+        if UserDefaults.standard.bool(forKey: AppConstants.isFinishedLoggingIn ) {
+            print("finished logging in")
+
+            if let windowScene = scene as? UIWindowScene {
+                let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+                window.windowScene = windowScene
+                let storyboard = UIStoryboard(name: AppConstants.notificationStoryboard, bundle: Bundle.main)
+                if let initialVC = storyboard.instantiateInitialViewController() {
+                    window.rootViewController = initialVC
+                    self.window = window
+                }
+                window.makeKeyAndVisible()
+            }
+        } else {
+            print("not finished logging in")
+        }
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).

@@ -35,6 +35,15 @@ class LoginListViewController: UIViewController {
     }
 
     @IBAction func skipWasTapped(_ sender: Any) {
+        print("tapped")
+        UserDefaults.standard.set(true, forKey: AppConstants.isFinishedLoggingIn)
+        
+        let storyboard = UIStoryboard(name: AppConstants.notificationStoryboard, bundle: Bundle.main)
+        if let vc = storyboard.instantiateInitialViewController() {
+            self.navigationController?.pushViewController(vc, animated: true)
+        
+            
+        }
         
     }
     
@@ -90,6 +99,7 @@ extension LoginListViewController: UITableViewDataSource, UITableViewDelegate {
                 let destination = segue.destination as! LoginWebViewController
                 destination.selectedService = selectedService
             } else {
+                //TO DO:
                 //Print error
                 //Display alert: Login failed
             }
