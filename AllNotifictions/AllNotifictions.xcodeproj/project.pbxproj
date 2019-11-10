@@ -16,6 +16,7 @@
 		BA00E6BE2368E7CC00CA6125 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA00E6BC2368E7CC00CA6125 /* LaunchScreen.storyboard */; };
 		BA00E6CC2368E93B00CA6125 /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA00E6CB2368E93B00CA6125 /* Notification.storyboard */; };
 		BA00E6CF2368EDAB00CA6125 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA00E6CE2368EDAB00CA6125 /* LoginCell.swift */; };
+		BA1EFF672378900B00781984 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1EFF662378900B00781984 /* NotificationCell.swift */; };
 		BA23F17D2377A74200E1BB97 /* DecodeableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23F17C2377A74200E1BB97 /* DecodeableError.swift */; };
 		BA23F17F2377C78C00E1BB97 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23F17E2377C78C00E1BB97 /* UIViewController+Helpers.swift */; };
 		BA23F1852377D1CD00E1BB97 /* GithubAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23F1842377D1CD00E1BB97 /* GithubAPIClient.swift */; };
@@ -51,6 +52,7 @@
 		BA00E6BF2368E7CC00CA6125 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA00E6CB2368E93B00CA6125 /* Notification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
 		BA00E6CE2368EDAB00CA6125 /* LoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
+		BA1EFF662378900B00781984 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		BA23F17C2377A74200E1BB97 /* DecodeableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeableError.swift; sourceTree = "<group>"; };
 		BA23F17E2377C78C00E1BB97 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		BA23F1842377D1CD00E1BB97 /* GithubAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPIClient.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				BAB4BA7E237809B000B0A518 /* NotificationListViewController.swift */,
+				BA1EFF662378900B00781984 /* NotificationCell.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				BAB4BA8123780CCC00B0A518 /* AppConstants.swift in Sources */,
 				BA2C21D5236949280094D417 /* HostType.swift in Sources */,
 				BA23F1872377D30300E1BB97 /* GithubAPIAuthRequest.swift in Sources */,
+				BA1EFF672378900B00781984 /* NotificationCell.swift in Sources */,
 				BA00E6CF2368EDAB00CA6125 /* LoginCell.swift in Sources */,
 				BA23F1852377D1CD00E1BB97 /* GithubAPIClient.swift in Sources */,
 				BA23F17F2377C78C00E1BB97 /* UIViewController+Helpers.swift in Sources */,

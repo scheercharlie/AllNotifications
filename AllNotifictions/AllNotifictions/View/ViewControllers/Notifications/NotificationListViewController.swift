@@ -18,7 +18,7 @@ class NotificationListViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationItem.hidesBackButton = true
     }
     
     @IBAction func buttonTapped(_ sender: Any) {
@@ -36,4 +36,25 @@ class NotificationListViewController: UIViewController {
     }
     
     
+}
+
+extension NotificationListViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: constants.notificationCellIdentifier, for: indexPath) as! NotificationCell
+        
+        
+        return cell
+    }
+    
+    
+}
+
+extension NotificationListViewController {
+    enum constants {
+        static let notificationCellIdentifier = "notificationCell"
+    }
 }
