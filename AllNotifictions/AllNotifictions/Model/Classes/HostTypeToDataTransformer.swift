@@ -21,3 +21,5 @@ class HostTypeToDataTransformer: ValueTransformer {
         return (hostType as! [HostType])
     }
 }
+
+//TO DO: Figure out if this class is being used.  If not remove it

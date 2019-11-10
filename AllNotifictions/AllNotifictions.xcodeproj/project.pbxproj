@@ -118,8 +118,6 @@
 			children = (
 				BA00E6AE2368E7C500CA6125 /* AppDelegate.swift */,
 				BA00E6B02368E7C500CA6125 /* SceneDelegate.swift */,
-				BA00E6CE2368EDAB00CA6125 /* LoginCell.swift */,
-				BA4345BE236A5E3000C5A413 /* LoginTextFieldDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -154,12 +152,33 @@
 		BA00E6CD2368E94500CA6125 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				BA00E6B22368E7C500CA6125 /* LoginListViewController.swift */,
-				BA4345BC236A55F100C5A413 /* LoginViewController.swift */,
-				BA8E09CC23765CFD00D66124 /* LoginWebViewController.swift */,
+				BA23F1802377D0E200E1BB97 /* Login View Controllers */,
 				BA23F17E2377C78C00E1BB97 /* UIViewController+Helpers.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		BA23F1802377D0E200E1BB97 /* Login View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BA00E6B22368E7C500CA6125 /* LoginListViewController.swift */,
+				BA4345BC236A55F100C5A413 /* LoginViewController.swift */,
+				BA8E09CC23765CFD00D66124 /* LoginWebViewController.swift */,
+				BA4345BE236A5E3000C5A413 /* LoginTextFieldDelegate.swift */,
+				BA00E6CE2368EDAB00CA6125 /* LoginCell.swift */,
+			);
+			path = "Login View Controllers";
+			sourceTree = "<group>";
+		};
+		BA23F1812377D11D00E1BB97 /* WordPressComAPI */ = {
+			isa = PBXGroup;
+			children = (
+				BAA147EE236E7A0600CF5883 /* WordpressAPIClient.swift */,
+				BAD92C5223767E17004BB4E7 /* WordPressAPIAuthResponse.swift */,
+				BAD92C5423767F3E004BB4E7 /* WordPressAPIAuthRequest.swift */,
+				BAD92C5623768066004BB4E7 /* WordPressAPIAuthErrorResponse.swift */,
+			);
+			path = WordPressComAPI;
 			sourceTree = "<group>";
 		};
 		BA2C21D1236923CE0094D417 /* Classes */ = {
@@ -171,10 +190,7 @@
 				BA2C21D9236A2F250094D417 /* HostTypeToDataTransformer.swift */,
 				BAA147EA236E6D8100CF5883 /* APIClient.swift */,
 				BAA147EC236E70CC00CF5883 /* HTTPHeaders.swift */,
-				BAA147EE236E7A0600CF5883 /* WordpressAPIClient.swift */,
-				BAD92C5223767E17004BB4E7 /* WordPressAPIAuthResponse.swift */,
-				BAD92C5423767F3E004BB4E7 /* WordPressAPIAuthRequest.swift */,
-				BAD92C5623768066004BB4E7 /* WordPressAPIAuthErrorResponse.swift */,
+				BA23F1812377D11D00E1BB97 /* WordPressComAPI */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
