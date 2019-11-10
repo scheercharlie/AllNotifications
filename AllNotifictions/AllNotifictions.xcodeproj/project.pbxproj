@@ -19,6 +19,7 @@
 		BA1EFF672378900B00781984 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1EFF662378900B00781984 /* NotificationCell.swift */; };
 		BA1EFF692378945000781984 /* WordPressAPINotificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1EFF682378945000781984 /* WordPressAPINotificationResponse.swift */; };
 		BA1EFF6B2378946100781984 /* WordPressAPINotificationErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1EFF6A2378946100781984 /* WordPressAPINotificationErrorResponse.swift */; };
+		BA1EFF6D2378B71700781984 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1EFF6C2378B71700781984 /* Notification.swift */; };
 		BA23F17D2377A74200E1BB97 /* DecodeableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23F17C2377A74200E1BB97 /* DecodeableError.swift */; };
 		BA23F17F2377C78C00E1BB97 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23F17E2377C78C00E1BB97 /* UIViewController+Helpers.swift */; };
 		BA23F1852377D1CD00E1BB97 /* GithubAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA23F1842377D1CD00E1BB97 /* GithubAPIClient.swift */; };
@@ -57,6 +58,7 @@
 		BA1EFF662378900B00781984 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		BA1EFF682378945000781984 /* WordPressAPINotificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPressAPINotificationResponse.swift; sourceTree = "<group>"; };
 		BA1EFF6A2378946100781984 /* WordPressAPINotificationErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPressAPINotificationErrorResponse.swift; sourceTree = "<group>"; };
+		BA1EFF6C2378B71700781984 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		BA23F17C2377A74200E1BB97 /* DecodeableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeableError.swift; sourceTree = "<group>"; };
 		BA23F17E2377C78C00E1BB97 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		BA23F1842377D1CD00E1BB97 /* GithubAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPIClient.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				BAA147EC236E70CC00CF5883 /* HTTPHeaders.swift */,
 				BA23F17C2377A74200E1BB97 /* DecodeableError.swift */,
 				BAB4BA8023780CCC00B0A518 /* AppConstants.swift */,
+				BA1EFF6C2378B71700781984 /* Notification.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				BA23F18B2377D6E200E1BB97 /* GithubAPIAuthTokenRequest.swift in Sources */,
 				BAD92C5323767E17004BB4E7 /* WordPressAPIAuthResponse.swift in Sources */,
 				BA1EFF6B2378946100781984 /* WordPressAPINotificationErrorResponse.swift in Sources */,
+				BA1EFF6D2378B71700781984 /* Notification.swift in Sources */,
 				BA23F17D2377A74200E1BB97 /* DecodeableError.swift in Sources */,
 				BAA147EB236E6D8100CF5883 /* APIClient.swift in Sources */,
 				BAA147ED236E70CC00CF5883 /* HTTPHeaders.swift in Sources */,

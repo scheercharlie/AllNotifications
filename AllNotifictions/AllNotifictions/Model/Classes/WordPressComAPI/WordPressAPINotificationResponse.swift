@@ -11,7 +11,7 @@ import Foundation
 struct WordPressAPINotificationResponse: Decodable {
     let lastSeenTime: String
     let number: Int
-    let notes: [Notes]
+    let notes: [WordPressNote]
     
     enum CodingKeys: String, CodingKey {
         case lastSeenTime = "last_seen_time"
@@ -20,7 +20,7 @@ struct WordPressAPINotificationResponse: Decodable {
     }
 }
 
-struct Notes: Decodable {
+struct WordPressNote: Decodable {
     let id: Int
     let type: String
     let read: Int
@@ -43,7 +43,7 @@ struct Ranges: Decodable {
     let url: String
     let siteId: Int?
     
-    let id: Int
+    let id: Int?
     
     enum CodingKeys: String, CodingKey {
         case type
@@ -56,7 +56,7 @@ struct Ranges: Decodable {
 
 struct Body: Decodable {
     let text: String
-//    let ranges: [Ranges]
+    let ranges: [Ranges]?
 }
 
 struct Meta: Decodable {

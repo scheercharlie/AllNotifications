@@ -1,0 +1,45 @@
+//
+//  Notification.swift
+//  AllNotifictions
+//
+//  Created by Charlie Scheer on 11/10/19.
+//  Copyright © 2019 Praxsis. All rights reserved.
+//
+
+import Foundation
+import CoreData
+
+extension Notification {
+    func setupNewNotificationFrom(_ note: WordPressNote) {
+        self.id = Int16(note.id)
+        self.title = note.title
+        self.type = note.type
+        
+        if let url = URL(string: note.url) {
+            self.url = url
+        }
+        
+        if note.read == 0 {
+            self.read = false
+        } else {
+            self.read = true
+        }
+        
+        if let meta = note.meta {
+            self.siteID = Int16(meta.ids.site)
+        }
+        
+        var bodyText = ""
+        for body in note.body {
+            bodyText.append(body.text)
+        }
+        self.body = bodyText
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale =  Locale(identifier: "en_US_POSIX")
+        if let date = dateFormatter.date(from: note.timestamp) {
+            self.timeStamp = date
+        }
+    }
+}
