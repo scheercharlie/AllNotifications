@@ -41,8 +41,6 @@ class HostType: Codable {
                 return "Github"
             case .wordpress:
                 return "WordPress"
-            case .slack:
-                return "Slack"
             }
         } else {
             return nil
@@ -51,7 +49,7 @@ class HostType: Codable {
     
     //Defined available services
     enum SocialService: Int, CaseIterable, Codable {
-        case github = 1, wordpress, slack
+        case github = 1, wordpress
     }
     
     enum constants {

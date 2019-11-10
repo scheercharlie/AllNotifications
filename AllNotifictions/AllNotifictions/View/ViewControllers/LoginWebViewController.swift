@@ -17,36 +17,59 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         webKitView.navigationDelegate = self
-        let url = WordpressAPIClient.endpoints.authentication.url
+        
+        guard let url = getLoginURL() else {
+            //TO DO: Display alert that url could not be loaded
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+        
         let request = URLRequest(url: url)
         
         webKitView.load(request)
+    }
+    
+    fileprivate func getLoginURL() -> URL? {
+        var urlString = ""
+        
+        let hostType = selectedService.getTypeFromHostTypeData()
+        
+        switch hostType?.type {
+        case .github:
+            print("github")
+        case .wordpress:
+            urlString = WordpressAPIClient.endpoints.authentication.stringValue
+        default:
+            return nil
+        }
+        
+        
+        
+        return URL(string: urlString)
+    }
+        
+        func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+            print("did commit")
+            if let url = webView.url,
+                let components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+                switch components.path {
+                case "/wordpress/":
+                    WordpressAPIClient.authenticate(components: components, host:selectedService, completion: handleLoginResponse(success:error:))
+                default:
+                    break
+                }
+            }
+        }
+        
+        fileprivate func handleLoginResponse(success: Bool, error: Error?) {
+            if error != nil {
+                //TO DO: Display error
+                print(error)
+            } else {
+                print(success)
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
         
     }
     
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        print("did commit")
-        if let url = webView.url,
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
-            switch components.path {
-            case "/wordpress/":
-                WordpressAPIClient.authenticate(components: components, host:selectedService, completion: handleLoginResponse(success:error:))
-            default:
-                break
-            }
-        }
-    }
-    
-    fileprivate func handleLoginResponse(success: Bool, error: Error?) {
-        if error != nil {
-            //TO DO: Display error
-            print(error)
-        } else {
-            print(success)
-            self.navigationController?.popViewController(animated: true)
-        }
-    }
-
-}
-
-
