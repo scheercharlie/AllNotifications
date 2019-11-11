@@ -25,9 +25,9 @@ struct WordPressNote: Decodable {
     let type: String
     let read: Int
     let timestamp: String
-    let url: String
+    let url: String?
     
-    let subject: [Subject]
+    let subject: [Subject]?
     let body: [Body]
     let meta: Meta?
     let title: String
@@ -39,8 +39,8 @@ struct Subject: Decodable {
 }
 
 struct Ranges: Decodable {
-    let type: String
-    let url: String
+    let type: String?
+    let url: String?
     let siteId: Int?
     
     let id: Int?

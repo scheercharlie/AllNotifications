@@ -54,7 +54,6 @@ class GithubAPIClient: APIClient {
     }
     
     private static func handleAuthenticationResponse(components: URLComponents) -> String? {
-        print("is Github auth")
         guard let queryItems = components.queryItems, let code  = queryItems[0].value else {
             print("couldn't get code")
             return nil
@@ -65,7 +64,6 @@ class GithubAPIClient: APIClient {
     
     
     private static func codeAuthenticationPostRequest(code: String, host: NotificationHost, completion: @escaping (Bool, Error?) -> Void) {
-        print(code)
         
         let authRequest = GithubAPIAuthTokenRequest(clientId: Auth.clientId,
                                                     clientSecret: Auth.clientSecret,
@@ -95,9 +93,7 @@ class GithubAPIClient: APIClient {
                                     host.tokenType = data.tokenType
                                     host.isLoggedIn = true
                                     
-                                    if DataController.shared.backgroundContext.hasChanges {
-                                        print("has changes")
-                                        
+                                    if DataController.shared.backgroundContext.hasChanges {        
                                         do {
                                             try DataController.shared.backgroundContext.save()
                                             DispatchQueue.main.async {

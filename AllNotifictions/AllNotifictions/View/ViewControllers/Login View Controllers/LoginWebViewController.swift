@@ -28,7 +28,6 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
         switch hostType?.type {
         case .github:
             let request = URLRequest(url: GithubAPIClient.endpoints.authentication.url)
-            print(GithubAPIClient.endpoints.authentication.url)
             webKitView.load(request)
         case .wordpress:
             let request = URLRequest(url: WordpressAPIClient.endpoints.authentication.url)
@@ -39,14 +38,12 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
     }
         
         func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-            print("did commit")
             if let url = webView.url,
                 let components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
                 switch components.path {
                 case "/wordpress/":
                     WordpressAPIClient.authenticate(components: components, host:selectedService, completion: handleLoginResponse(success:error:))
                 case "/github/":
-                    print("Github")
                     GithubAPIClient.authenticate(components: components, host: selectedService, completion: handleLoginResponse(success:error:))
                 default:
                     break

@@ -48,8 +48,6 @@ class LoginListViewController: UIViewController {
     }
 
     @IBAction func skipWasTapped(_ sender: Any) {
-        print("tapped")
-        
         finishLoggingIn()
         self.dismiss(animated: true, completion: nil)
     }

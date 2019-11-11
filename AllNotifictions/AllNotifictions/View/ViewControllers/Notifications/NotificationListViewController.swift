@@ -48,7 +48,6 @@ class NotificationListViewController: UIViewController {
                     case "Github":
                         fetchGithubNotifications(service)
                     default:
-                        print("break")
                         break
                     }
                     

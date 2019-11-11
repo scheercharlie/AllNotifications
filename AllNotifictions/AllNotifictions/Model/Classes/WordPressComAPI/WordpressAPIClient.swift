@@ -56,7 +56,6 @@ class WordpressAPIClient: APIClient {
     
     
     private static func handleAuthenticationResponse(components: URLComponents) -> String? {
-        print("is WordPress auth")
         guard let queryItems = components.queryItems, let code  = queryItems[0].value else {
             print("couldn't get code")
             return nil
@@ -98,8 +97,6 @@ class WordpressAPIClient: APIClient {
                         host.isLoggedIn = true
                         
                         if DataController.shared.backgroundContext.hasChanges {
-                            print("has changes")
-                            
                             do {
                                 try DataController.shared.backgroundContext.save()
                                 DispatchQueue.main.async {

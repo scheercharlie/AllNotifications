@@ -67,12 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
     }
-    
-    func application(_ application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
-        print("will continue was called")
-        
-        return true
-    }
-    
+
 }
 

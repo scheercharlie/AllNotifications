@@ -16,8 +16,10 @@ extension Notification {
         self.title = note.title
         self.type = note.type
         
-        if let url = URL(string: note.url) {
-            self.url = url
+        if let urlString = note.url {
+            if let url = URL(string: urlString) {
+                self.url = url
+            }
         }
         
         if note.read == 0 {
@@ -51,7 +53,6 @@ extension Notification {
     }
     
     func setupNewGithubNotifiationFrom(_ note: GithubAPINotificationResponse, withHost host: NotificationHost, completion: @escaping (Bool) -> Void) {
-        print("new github notification")
         
         self.id = note.id
         self.read = !note.unread
@@ -69,17 +70,20 @@ extension Notification {
         
         self.notificationsHost = host
         
-        getGithubIssueNotificationDetails(url: URL(string: note.subject.url)!, completion: { (success, body) in
-            if success {
-                if let body = body {
-                    self.body = body
+        if let urlString = note.subject.url {
+            
+            
+            getGithubIssueNotificationDetails(url: URL(string: urlString)!, completion: { (success, body) in
+                if success {
+                    if let body = body {
+                        self.body = body
+                    }
+                    completion(true)
+                } else {
+                    completion(false)
                 }
-                completion(true)
-            } else {
-                completion(false)
-            }
-        })
- 
+            })
+        }
     }
     
     func getGithubIssueNotificationDetails(url: URL, completion: @escaping (Bool, String?) -> Void) {

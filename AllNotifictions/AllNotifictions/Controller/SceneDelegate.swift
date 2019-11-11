@@ -15,8 +15,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         print(UserDefaults.standard.bool(forKey: AppConstants.isFinishedLoggingIn))
         if UserDefaults.standard.bool(forKey: AppConstants.isFinishedLoggingIn ) {
-            print("finished logging in")
-
             if let windowScene = scene as? UIWindowScene {
                 let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
                 window.windowScene = windowScene
@@ -60,18 +58,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        print("enter background")
         DataController.shared.saveViewContext()
         DataController.shared.saveBackgroundContext()   
     }
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        print("did receive activity")
         
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-            print("browsing web")
             let url = userActivity.webpageURL!
-            print(url.absoluteString)
         }
     }
 }

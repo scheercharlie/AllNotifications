@@ -35,8 +35,8 @@ struct GithubAPINotificationResponse: Decodable {
 
 struct GithubSubject: Decodable {
     let title: String
-    let url: String
-    let latestCommentUrl: String
+    let url: String?
+    let latestCommentUrl: String?
     let type: String
     
     enum CodingKeys: String, CodingKey {
