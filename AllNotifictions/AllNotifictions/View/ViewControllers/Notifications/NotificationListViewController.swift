@@ -17,6 +17,8 @@ class NotificationListViewController: UIViewController {
     var serviceFetchedResultsController: NSFetchedResultsController<NotificationHost>!
     var notificationFetchedResultsController: NSFetchedResultsController<Notification>!
 
+    //MARK: Life cycle methods
+    //Present Login view if user wants to log into more sources
     @IBAction func loginWasTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: AppConstants.loginStoryboard, bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(identifier: AppConstants.loginListVCIdentifier)
@@ -26,20 +28,19 @@ class NotificationListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchSavedServices()
-        
-        fetchNotifications()
-        
         activityView.hidesWhenStopped = true
         
-        
-        
+        fetchSavedServices()
+        fetchNotifications()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
+        //Fetch new notifications
         if let services = serviceFetchedResultsController.fetchedObjects {
             startAnimatingAcitivityIndicator(true)
+            
+            //For each service, if logged in try to fetch new notifications
             for service in services {
                 if service.isLoggedIn {
                     switch service.title {
@@ -57,6 +58,9 @@ class NotificationListViewController: UIViewController {
         }
     }
     
+    //Start activity indicator while downloading and disable user interaction
+    //True begins animation and disables interaction
+    //False stops animation and restores interaction
     fileprivate func startAnimatingAcitivityIndicator(_ bool: Bool) {
         if bool {
             activityView.startAnimating()
@@ -67,11 +71,14 @@ class NotificationListViewController: UIViewController {
         }
     }
     
+    //MARK: Fetch notifications from API Methods
+    //Fetch notifications for WordPress.com
     fileprivate func fetchWordpressNotifications(_ service: NotificationHost) {
-        //TO DO: handle the force unwrapping better
         WordpressAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
             if success {
                 self.tableView.reloadData()
+                
+                //Update when WordPress was last updated
                 service.lastUpdated = Date()
                 try? DataController.shared.viewContext.save()
             } else {
@@ -80,15 +87,18 @@ class NotificationListViewController: UIViewController {
         }
     }
     
+    //Fetch notifications for Github
     fileprivate func fetchGithubNotifications(_ service: NotificationHost) {
         var dateString = ""
         
+        //if there is not a saved notification date for Github, create one back in the past and download all notifications
         if service.lastUpdated == nil {
             let date = Date(timeIntervalSince1970: TimeInterval(exactly: 10.0)!)
             let converter = ISO8601DateFormatter()
             let string = converter.string(from: date)
             dateString = string
         } else {
+            //If there is a saved update date, set dateString to last update
             if let date = service.lastUpdated {
                 let converter = ISO8601DateFormatter()
                 let string = converter.string(from: date)
@@ -96,6 +106,7 @@ class NotificationListViewController: UIViewController {
             }
         }
         
+        //Fetch notifications from Github based on since date
         GithubAPIClient.getNotifications(token: service.token!, host: service, since: dateString ) { (success, error) in
             if success{
                 service.lastUpdated = Date()
@@ -113,6 +124,8 @@ class NotificationListViewController: UIViewController {
         }
     }
     
+    //MARK: Core data fetch methods
+    //Get saved notifications hosts from core data
     fileprivate func fetchSavedServices() {
         let serviceFetchRequest: NSFetchRequest<NotificationHost> = NotificationHost.fetchRequest()
         serviceFetchRequest.sortDescriptors = [NSSortDescriptor(key: "objectID", ascending: true)]
@@ -124,6 +137,7 @@ class NotificationListViewController: UIViewController {
         }
     }
     
+    //Get saved notifications from Core data
     fileprivate func fetchNotifications() {
         let notificationFetchRequest: NSFetchRequest<Notification> = Notification.fetchRequest()
         notificationFetchRequest.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: false)]
@@ -138,6 +152,7 @@ class NotificationListViewController: UIViewController {
 
 }
 
+//MARK: TableView delegate and data source methods
 extension NotificationListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var noteCount = 0
@@ -177,6 +192,8 @@ extension NotificationListViewController: UITableViewDelegate, UITableViewDataSo
     
 }
 
+
+//MARK: View Constants
 extension NotificationListViewController {
     enum constants {
         static let notificationCellIdentifier = "notificationCell"
