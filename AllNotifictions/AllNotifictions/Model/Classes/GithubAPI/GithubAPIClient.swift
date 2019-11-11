@@ -120,8 +120,11 @@ class GithubAPIClient: APIClient {
         
         ApiTaskRequestWithHeaders(url: endpoints.getNotifications.url,
                                   method: "GET",
-                                  responseType: GithubAPINotificationResponse.self, body: nil, headers: headers, errorType: GithubAPINotificationErrorResponse.self) { (data, error) in
-                                    //Add code
+                                  responseType: Array<GithubAPINotificationResponse>.self, body: nil, headers: headers, errorType: GithubAPINotificationErrorResponse.self) { (data, error) in
+                                    print(data)
+                                    print(error)
         }
+        
+        
     }
 }

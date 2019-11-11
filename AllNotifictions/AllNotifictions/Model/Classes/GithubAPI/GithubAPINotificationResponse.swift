@@ -10,7 +10,7 @@ import Foundation
 
 struct GithubAPINotificationResponse: Decodable {
     let id: String
-    let unread: String
+    let unread: Bool
     let reason: String
     let updatedAt: String
     let lastReadAt: String
@@ -48,8 +48,7 @@ struct GithubSubject: Decodable {
 }
 
 struct GithubRepository: Decodable {
-    let login: String
-    let id: String
+    let id: Int
     let nodeId: String
     let name: String
     let fullName: String
@@ -57,7 +56,6 @@ struct GithubRepository: Decodable {
     let repoURL: String
     
     enum CodingKeys: String, CodingKey {
-        case login
         case id
         case nodeId = "node_id"
         case name

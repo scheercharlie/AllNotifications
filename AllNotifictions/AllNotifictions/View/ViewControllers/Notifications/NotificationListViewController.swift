@@ -45,10 +45,17 @@ class NotificationListViewController: UIViewController {
                     case "WordPress":
                         print("WordPress")
                         //TO DO: handle the force unwrapping better
-                        WordpressAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
-                            if success {
-                                print("yay")
-                                self.tableView.reloadData()
+//                        WordpressAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
+//                            if success {
+//                                print("yay")
+//                                self.tableView.reloadData()
+//                            }
+//                        }
+                    case "Github":
+                        print("Github")
+                        GithubAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
+                            if success{
+                                print("github yay")
                             }
                         }
                     default:
