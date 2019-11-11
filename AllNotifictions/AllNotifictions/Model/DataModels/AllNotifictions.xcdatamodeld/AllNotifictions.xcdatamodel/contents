@@ -14,6 +14,7 @@
     <entity name="NotificationHost" representedClassName="NotificationHost" syncable="YES" codeGenerationType="class">
         <attribute name="hostType" optional="YES" attributeType="Binary" valueTransformerName="HostTypeToDataTransformer" customClassName="HostType"/>
         <attribute name="isLoggedIn" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="serviceTypeID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
@@ -24,6 +25,6 @@
     </entity>
     <elements>
         <element name="Notification" positionX="-54" positionY="-9" width="128" height="178"/>
-        <element name="NotificationHost" positionX="-271.4140625" positionY="-7.35546875" width="128" height="178"/>
+        <element name="NotificationHost" positionX="-271.4140625" positionY="-7.35546875" width="128" height="193"/>
     </elements>
 </model>

@@ -33,44 +33,55 @@ class NotificationListViewController: UIViewController {
         
         
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         
         if let services = serviceFetchedResultsController.fetchedObjects {
             print(services.count)
             for service in services {
-                print(service.token )
                 if service.isLoggedIn {
                     switch service.title {
                     case "WordPress":
-                        print("WordPress")
-                        //TO DO: handle the force unwrapping better
-//                        WordpressAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
-//                            if success {
-//                                print("yay")
-//                                self.tableView.reloadData()
-//                            }
-//                        }
+                        fetchWordpressNotifications(service)
                     case "Github":
-                        print("Github")
-                        GithubAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
-                            if success{
-                                print("github yay")
-                                do {
-                                    try DataController.shared.viewContext.save()
-                                    print("did save")
-                                    try? self.notificationFetchedResultsController.performFetch()
-                                    self.tableView.reloadData()
-                                } catch {
-                                    print("Couldn't save WordPress notifications")
-                                    
-                                }
-                            }
-                        }
+                        fetchGithubNotifications(service)
                     default:
                         print("break")
                         break
                     }
+                    
+                }
+            }
+        }
+    }
+    
+    fileprivate func fetchWordpressNotifications(_ service: NotificationHost) {
+        print("WordPress")
+        //TO DO: handle the force unwrapping better
+        WordpressAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
+            if success {
+                print("yay")
+                self.tableView.reloadData()
+                service.lastUpdated = Date()
+                try? DataController.shared.viewContext.save()
+            }
+        }
+    }
+    
+    fileprivate func fetchGithubNotifications(_ service: NotificationHost) {
+        print("Github")
+        GithubAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
+            if success{
+                print("github yay")
+                do {
+                    try DataController.shared.viewContext.save()
+                    print("did save")
+                    try? self.notificationFetchedResultsController.performFetch()
+                    self.tableView.reloadData()
+                    service.lastUpdated = Date()
+                    try? DataController.shared.viewContext.save()
+                } catch {
+                    print("Couldn't save WordPress notifications")
                     
                 }
             }
