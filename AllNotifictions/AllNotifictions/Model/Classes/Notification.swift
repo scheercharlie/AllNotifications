@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension Notification {
-    func setupNewWordPressNotificationFrom(_ note: WordPressNote, withHost host: NotificationHost) {
+    func setupNewWordPressNotificationFrom(_ note: WordPressNote, withHost host: NotificationHost, completion: @escaping (Bool) -> Void) {
         self.id = String(note.id) 
         
         self.title = note.title
@@ -44,6 +44,10 @@ extension Notification {
         }
         
         self.notificationsHost = host
+        
+        DispatchQueue.main.async {
+            completion(true)
+        }
     }
     
     func setupNewGithubNotifiationFrom(_ note: GithubAPINotificationResponse, withHost host: NotificationHost, completion: @escaping (Bool) -> Void) {

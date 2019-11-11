@@ -73,13 +73,12 @@ class NotificationListViewController: UIViewController {
         GithubAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
             if success{
                 print("github yay")
+                service.lastUpdated = Date()
                 do {
                     try DataController.shared.viewContext.save()
-                    print("did save")
-                    try? self.notificationFetchedResultsController.performFetch()
+                    try self.notificationFetchedResultsController.performFetch()
                     self.tableView.reloadData()
-                    service.lastUpdated = Date()
-                    try? DataController.shared.viewContext.save()
+                    print("did save")
                 } catch {
                     print("Couldn't save WordPress notifications")
                     

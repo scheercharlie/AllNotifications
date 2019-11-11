@@ -124,26 +124,51 @@ class WordpressAPIClient: APIClient {
         ApiTaskRequestWithHeaders(url: endpoints.getNotifications.url, method: "GET", responseType: WordPressAPINotificationResponse.self, body: nil, headers: headers, errorType: WordPressAPINotificationErrorResponse.self) { (data, error) in
             if let notes = data?.notes {
                 for note in notes {
-                    let newNotification = Notification(context: DataController.shared.viewContext)
-                    newNotification.setupNewWordPressNotificationFrom(note, withHost: host)
-                    
-
-                    
-                }
-                
-                do {
-                    try DataController.shared.backgroundContext.save()
-                    print("did save")
-                    DispatchQueue.main.async {
-                        completion(true, nil)
-                    }
-                } catch {
-                    print("Couldn't save WordPress notifications")
-                    DispatchQueue.main.async {
-                        completion(false, nil)
+                    if isNewNotification(note, host: host) {
+                        print("is new note")
+                        let newNotification = Notification(context: DataController.shared.viewContext)
+                        newNotification.setupNewWordPressNotificationFrom(note, withHost: host) { (success) in
+                            if success {
+                                print("wp get notifications success")
+                                DispatchQueue.main.async {
+                                    completion(true, nil)
+                                }
+                            } else {
+                                print("failed to get notifications")
+                                DispatchQueue.main.async {
+                                    completion(false, error)
+                                }
+                            }
+                        }
+                    } else {
+                        print("did not get new notes")
+                        DispatchQueue.main.async {
+                            completion(true, nil)
+                        }
                     }
                 }
             }
         }
+    }
+    
+    static private func isNewNotification(_ note: WordPressNote, host: NotificationHost) -> Bool {
+        guard host.lastUpdated != nil else {
+            return true
+        }
+
+        var isNew = false
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale =  Locale(identifier: "en_US_POSIX")
+        
+        if let date = dateFormatter.date(from: note.timestamp),
+            let lastUpdated = host.lastUpdated {
+            if date > lastUpdated {
+                isNew = true
+            }
+        }
+        
+        return isNew
     }
 }
