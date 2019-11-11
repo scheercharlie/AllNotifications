@@ -51,6 +51,7 @@ class LoginListViewController: UIViewController {
         print("tapped")
         
         finishLoggingIn()
+        self.dismiss(animated: true, completion: nil)
     }
     
     fileprivate func finishLoggingIn() {
@@ -135,3 +136,6 @@ extension LoginListViewController {
         static let loginSegueIdentifier = "segueToLogin"
     }
 }
+
+
+//Github login is not dismissing the screen when the redirect url is reached

@@ -17,6 +17,13 @@ class NotificationListViewController: UIViewController {
     var serviceFetchedResultsController: NSFetchedResultsController<NotificationHost>!
     var notificationFetchedResultsController: NSFetchedResultsController<Notification>!
 
+    @IBAction func loginWasTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: AppConstants.loginStoryboard, bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(identifier: AppConstants.loginListVCIdentifier)
+        
+        present(vc, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchSavedServices()
@@ -24,13 +31,15 @@ class NotificationListViewController: UIViewController {
         fetchNotifications()
         
         
+        
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.navigationItem.hidesBackButton = true
+        
         if let services = serviceFetchedResultsController.fetchedObjects {
             print(services.count)
             for service in services {
+                print(service.token )
                 if service.isLoggedIn {
                     switch service.title {
                     case "WordPress":
@@ -75,7 +84,7 @@ class NotificationListViewController: UIViewController {
             print("Could not fetch notifications")
         }
     }
-    
+
 }
 
 extension NotificationListViewController: UITableViewDelegate, UITableViewDataSource{

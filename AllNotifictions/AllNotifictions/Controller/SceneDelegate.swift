@@ -60,6 +60,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
+        print("enter background")
         DataController.shared.saveViewContext()
         DataController.shared.saveBackgroundContext()   
     }
