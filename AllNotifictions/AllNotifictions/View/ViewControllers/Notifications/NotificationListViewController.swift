@@ -80,7 +80,7 @@ class NotificationListViewController: UIViewController {
                 
                 //Update when WordPress was last updated
                 service.lastUpdated = Date()
-                try? DataController.shared.viewContext.save()
+                DataController.shared.saveViewContext()
             } else {
                 self.displayNoActionAlert(title: "Connection Failure", message: "Could not get notifications from WordPress.  Please try again later!")
             }

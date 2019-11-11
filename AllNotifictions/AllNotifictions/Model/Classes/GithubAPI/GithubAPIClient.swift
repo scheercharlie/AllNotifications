@@ -34,6 +34,9 @@ class GithubAPIClient: APIClient {
         
     }
     
+    //MARK: Authentication Methods
+    
+    //Full authenticate method
     static func authenticate(components: URLComponents, host: NotificationHost, completion: @escaping (Bool, Error?) -> Void) {
         guard let code = handleAuthenticationResponse(components: components) else {
             print("no auth code")
@@ -62,7 +65,7 @@ class GithubAPIClient: APIClient {
         return code
     }
     
-    
+    //Get permanent token from Github API
     private static func codeAuthenticationPostRequest(code: String, host: NotificationHost, completion: @escaping (Bool, Error?) -> Void) {
         
         let authRequest = GithubAPIAuthTokenRequest(clientId: Auth.clientId,
@@ -111,6 +114,9 @@ class GithubAPIClient: APIClient {
         }
     }
     
+    //MARK: Notification Methods
+    
+    //fetch notificaitons from Github API
     static func getNotifications(token: String, host: NotificationHost, since: String, completion: @escaping (Bool, Error?) -> Void) {
         let headers = [HTTPHeaders(value: "token \(token)", field: "Authorization")]
         
@@ -118,9 +124,8 @@ class GithubAPIClient: APIClient {
                                   method: "GET",
                                   responseType: Array<GithubAPINotificationResponse>.self, body: nil, headers: headers, errorType: GithubAPINotificationErrorResponse.self) { (data, error) in
                                     guard let data = data else {
+                                        print("Could not fetch data")
                                         return
-                                        
-                                        //TO DO: do something with the error
                                     }
                                     
                                     for notification in data {

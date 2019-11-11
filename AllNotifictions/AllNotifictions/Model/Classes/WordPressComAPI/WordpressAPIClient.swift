@@ -35,6 +35,9 @@ class WordpressAPIClient: APIClient {
         }
     }
     
+    //MARK: Authentication Methods
+    
+    //Full authentication
     static func authenticate(components: URLComponents, host: NotificationHost, completion: @escaping (Bool, Error?) -> Void) {
         guard let code = handleAuthenticationResponse(components: components) else {
             print("no auth code")
@@ -64,7 +67,7 @@ class WordpressAPIClient: APIClient {
         return code
     }
     
-    
+    //Get permanent token
     private static func codeAuthenticationPostRequest(code: String, host: NotificationHost, completion: @escaping (Bool, Error?) -> Void) {
         let authRequest = WordPressAPIAuthRequest(clientId: Auth.clientId,
                                                   redirectURI: Auth.redirectURI,
@@ -115,6 +118,10 @@ class WordpressAPIClient: APIClient {
         }
     }
     
+    
+    //MARK: Notification Methods
+    
+    //Get notifications from WordPress API
     static func getNotifications(token: String, host: NotificationHost, completion: @escaping (Bool, Error?) -> Void) {
         let headers = [HTTPHeaders(value: "Bearer \(token)", field: "Authorization"), HTTPHeaders(value: "application/json", field: "Content-Type")]
         
@@ -144,6 +151,8 @@ class WordpressAPIClient: APIClient {
         }
     }
     
+    //Check if a notification is newer than the last time notifications were updates
+    //Return true if the notification is newer than the last update
     static private func isNewNotification(_ note: WordPressNote, host: NotificationHost) -> Bool {
         guard host.lastUpdated != nil else {
             return true

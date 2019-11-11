@@ -25,11 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             createHostTypeObjects()
             
             if DataController.shared.viewContext.hasChanges {
-                do {
-                    try DataController.shared.viewContext.save()
-                } catch {
-                    print("Save Failed")
-                }
+                DataController.shared.saveViewContext()
             }
         }
         
