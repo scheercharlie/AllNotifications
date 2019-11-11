@@ -46,8 +46,8 @@ extension Notification {
         self.notificationsHost = host
     }
     
-    func setupNewGithubNotifiationFrom(_ note: GithubAPINotificationResponse, withHost host: NotificationHost) {
-        self.body = note.subject.title
+    func setupNewGithubNotifiationFrom(_ note: GithubAPINotificationResponse, withHost host: NotificationHost, completion: @escaping (Bool) -> Void) {
+        print("new github notification")
         
         self.id = note.id
         self.read = !note.unread
@@ -59,10 +59,37 @@ extension Notification {
             self.timeStamp = date
         }
         
-        self.title = note.reason
+        self.title = note.subject.title
         self.type = note.subject.type
         self.url = URL(string: note.notificationURL)
         
         self.notificationsHost = host
+        
+        getGithubIssueNotificationDetails(url: URL(string: note.subject.url)!, completion: { (success, body) in
+            if success {
+                if let body = body {
+                    self.body = body
+                }
+                completion(true)
+            } else {
+                completion(false)
+            }
+        })
+ 
+    }
+    
+    func getGithubIssueNotificationDetails(url: URL, completion: @escaping (Bool, String?) -> Void) {
+        GithubAPIClient.ApiTaskRequest(url: url, method: "GET", responseType: GithubAPINotificationsDetailsResponse.self, body: nil, errorType: GithubAPINotificationErrorResponse.self) { (data, error) in
+
+            if let data = data {
+                let string = data.body
+                let lines = string.split { $0.isNewline }
+                let result = lines.joined(separator: "\n")
+    
+                completion(true, result)
+            } else {
+                completion(false, nil)
+            }
+        }
     }
 }

@@ -56,6 +56,15 @@ class NotificationListViewController: UIViewController {
                         GithubAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
                             if success{
                                 print("github yay")
+                                do {
+                                    try DataController.shared.viewContext.save()
+                                    print("did save")
+                                    try? self.notificationFetchedResultsController.performFetch()
+                                    self.tableView.reloadData()
+                                } catch {
+                                    print("Couldn't save WordPress notifications")
+                                    
+                                }
                             }
                         }
                     default:
@@ -114,6 +123,8 @@ extension NotificationListViewController: UITableViewDelegate, UITableViewDataSo
             print("no fetched objects")
             return cell
         }
+        
+        //Fix github logo to work on not darkmode
         
         let notificationAtIndexPath = fetchedNotifications[indexPath.row]
         cell.titleLabel.text = notificationAtIndexPath.title

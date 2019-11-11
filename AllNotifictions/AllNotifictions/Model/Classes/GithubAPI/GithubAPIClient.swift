@@ -130,23 +130,21 @@ class GithubAPIClient: APIClient {
                                     for notification in data {
                                         let newNotification = Notification(context: DataController.shared.viewContext)
                                         
-                                        newNotification.setupNewGithubNotifiationFrom(notification, withHost: host)
-                                    }
-                                    
-                                    do {
-                                        try DataController.shared.viewContext.save()
-                                        print("did save")
-                                        DispatchQueue.main.async {
-                                            completion(true, nil)
-                                        }
-                                    } catch {
-                                        print("Couldn't save WordPress notifications")
-                                        DispatchQueue.main.async {
-                                            completion(false, nil)
+                                        newNotification.setupNewGithubNotifiationFrom(notification, withHost: host) { (success) in
+                                            if success {
+                                                DispatchQueue.main.async {
+                                                    completion(true, nil)
+                                                }
+                                            } else {
+                                                DispatchQueue.main.async {
+                                                    completion(false, nil)
+                                                }
+                                            }
                                         }
                                     }
         }
         
         
     }
+    
 }
