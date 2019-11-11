@@ -1,0 +1,46 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2511
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 README.txt \
+\
+AllNotifications is a way to see all of your notifications in one single place.  This version of the project was created for the Udacity iOS nano degree final project, so it is limited in scope.  Only the WordPress.com and Github notifications are included with this app.\
+\
+\
+Logging In:\
+The app\'92s experience is pretty simple, upon opening the app for the first time, the user will be presented with a list of available notification hosts that they can log into.  After logging into all of the sources that they want to connect to, they can click on the Finish button in the bottom right to move onto the next screen.  \
+\
+Each login is done through the APIs web authentication, so a Webkit view is loaded and the authentication is handled on the API providers side.  After finishing the login for that service,  they are returned to the list.  A check mark will appear next to each service that has been logged into, and it can not be selected again.\
+\
+Once the user has hit the finish button they will not be brought back to the login screen, even if the app is reloaded.  If the user wants to view the login screen again, there is a login button they can use to access it on the next screen.\
+\
+\
+Notifications:\
+Once the user has finished logging into their selected sources, they are taken to a new view.  On the new view is all of the notifications that they have received from the notification hosts that they logged into. The notifications are marked using the logo for each service, and have a title and a snippet of the notification text.\
+\
+The notifications will not download more than once, and are stored locally so if the user wants to explore the notifications while they are offline, they will be able to do so.\
+\
+\
+\
+Building/Running/Testing:\
+\
+The app does not require any special extensions, so it can be built as is.\
+\
+For testing, I have created a few accounts on the available host\'92s and created some notifications for them.  \
+\
+NOTE: because of how the GitHub API authenticates, once the user has authorized the connection, the login screen can not be accessed again, so a new token can not be obtained.  If it is needed to login more than one, log into the GitHub test account and go to Account > Settings > Applications > Authorized OAuth Apps and remove authorization for AllNotifications\
+\
+\
+Credentials for those test accounts:\
+Github:\
+username - \
+password - \
+\
+WordPress:\
+username - \
+password - \
+\
+}

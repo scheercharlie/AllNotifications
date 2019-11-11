@@ -75,6 +75,8 @@ class NotificationListViewController: UIViewController {
                 self.tableView.reloadData()
                 service.lastUpdated = Date()
                 try? DataController.shared.viewContext.save()
+            } else {
+                self.displayNoActionAlert(title: "Connection Failure", message: "Could not get notifications from WordPress.  Please try again later!")
             }
         }
     }
@@ -97,17 +99,17 @@ class NotificationListViewController: UIViewController {
         
         GithubAPIClient.getNotifications(token: service.token!, host: service, since: dateString ) { (success, error) in
             if success{
-                print("github yay")
                 service.lastUpdated = Date()
                 do {
                     try DataController.shared.viewContext.save()
                     try self.notificationFetchedResultsController.performFetch()
                     self.tableView.reloadData()
-                    print("did save")
                 } catch {
                     print("Couldn't save WordPress notifications")
                     
                 }
+            } else {
+                self.displayNoActionAlert(title: "Connection Failure", message: "Could not get notifications from Github.  Please try again later!")
             }
         }
     }
@@ -130,8 +132,6 @@ class NotificationListViewController: UIViewController {
         
         do {
             try notificationFetchedResultsController.performFetch()
-            print("count")
-            print(notificationFetchedResultsController.fetchedObjects?.count)
         } catch {
             print("Could not fetch notifications")
         }
@@ -144,7 +144,6 @@ extension NotificationListViewController: UITableViewDelegate, UITableViewDataSo
         var noteCount = 0
         if let fetchedNotes = notificationFetchedResultsController.fetchedObjects {
             noteCount = fetchedNotes.count
-            print("rows in section \(fetchedNotes.count)")
         }
         
         
