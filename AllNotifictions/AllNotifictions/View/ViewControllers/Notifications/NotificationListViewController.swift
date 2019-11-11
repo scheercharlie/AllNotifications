@@ -30,6 +30,8 @@ class NotificationListViewController: UIViewController {
         
         fetchNotifications()
         
+        activityView.hidesWhenStopped = true
+        
         
         
     }
@@ -37,7 +39,7 @@ class NotificationListViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         if let services = serviceFetchedResultsController.fetchedObjects {
-            print(services.count)
+            startAnimatingAcitivityIndicator(true)
             for service in services {
                 if service.isLoggedIn {
                     switch service.title {
@@ -52,6 +54,17 @@ class NotificationListViewController: UIViewController {
                     
                 }
             }
+            startAnimatingAcitivityIndicator(false)
+        }
+    }
+    
+    fileprivate func startAnimatingAcitivityIndicator(_ bool: Bool) {
+        if bool {
+            activityView.startAnimating()
+            view.isUserInteractionEnabled = false
+        } else {
+            activityView.stopAnimating()
+            view.isUserInteractionEnabled = true
         }
     }
     
