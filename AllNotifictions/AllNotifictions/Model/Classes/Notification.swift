@@ -45,4 +45,22 @@ extension Notification {
         
         self.notificationsHost = host
     }
+    
+    func setupNewGithubNotifiationFrom(_ note: GithubAPINotificationResponse, host: NotificationHost) {
+        self.body = note.subject.title
+        
+        self.id = note.id
+        self.read = !note.unread
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale =  Locale(identifier: "en_US_POSIX")
+        if let date = dateFormatter.date(from: note.updatedAt) {
+            self.timeStamp = date
+        }
+        
+        self.title = note.reason
+        self.type = note.subject.type
+        self.url = URL(string: note.notificationURL)
+    }
 }
