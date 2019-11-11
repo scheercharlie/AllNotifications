@@ -24,7 +24,7 @@ class GithubAPIClient: APIClient {
             switch self {
             case .authentication: return "https://github.com/login/oauth/authorize" + "?client_id=" + Auth.clientId + "&redirect_uri=" + Auth.redirectURI + "&scope=notifications"
             case .tokenAuthentication: return "https://github.com/login/oauth/access_token"
-            case .getNotifications: return "https://api.github.com/notifications"
+            case .getNotifications: return "https://api.github.com/notifications" + "?all=true"
             }
         }
         
