@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    //MARK: Alert methods
     public func displayNoActionAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)

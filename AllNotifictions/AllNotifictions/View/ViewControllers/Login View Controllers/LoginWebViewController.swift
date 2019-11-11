@@ -17,9 +17,7 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         webKitView.navigationDelegate = self
-        
         loadLoginForSelectedService()
-    
     }
     
     fileprivate func loadLoginForSelectedService() {
@@ -36,28 +34,29 @@ class LoginWebViewController: UIViewController, WKNavigationDelegate {
             displayNoActionAlertAndDissmissView(title: "Error Loading Page", message: "Could not load login page.  Please try again!")
         }
     }
-        
-        func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-            if let url = webView.url,
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
-                switch components.path {
-                case "/wordpress/":
-                    WordpressAPIClient.authenticate(components: components, host:selectedService, completion: handleLoginResponse(success:error:))
-                case "/github/":
-                    GithubAPIClient.authenticate(components: components, host: selectedService, completion: handleLoginResponse(success:error:))
-                default:
-                    break
-                }
+    
+    //MARK: Webview methods
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        if let url = webView.url,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+            switch components.path {
+            case "/wordpress/":
+                WordpressAPIClient.authenticate(components: components, host:selectedService, completion: handleLoginResponse(success:error:))
+            case "/github/":
+                GithubAPIClient.authenticate(components: components, host: selectedService, completion: handleLoginResponse(success:error:))
+            default:
+                break
             }
         }
-        
-        fileprivate func handleLoginResponse(success: Bool, error: Error?) {
-            if error != nil {
-                displayNoActionAlertAndDissmissView(title: "Login Failed", message: error!.localizedDescription)
-            } else {
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-        
     }
     
+    fileprivate func handleLoginResponse(success: Bool, error: Error?) {
+        if error != nil {
+            displayNoActionAlertAndDissmissView(title: "Login Failed", message: error!.localizedDescription)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+}
+
