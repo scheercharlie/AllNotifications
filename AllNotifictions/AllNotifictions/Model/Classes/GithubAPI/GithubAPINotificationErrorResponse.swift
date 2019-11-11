@@ -8,6 +8,12 @@
 
 import Foundation
 
-struct GithubAPINotificationErrorResponse: Decodable {
+struct GithubAPINotificationErrorResponse: DecodeableError {
+    let message: String
+    let documentationURL: String
     
+    enum CodingKeys: String, CodingKey {
+        case message
+        case documentationURL = "documentation_url"
+    }
 }
