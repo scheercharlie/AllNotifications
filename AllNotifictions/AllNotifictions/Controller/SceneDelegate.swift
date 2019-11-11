@@ -13,7 +13,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        print(UserDefaults.standard.bool(forKey: AppConstants.isFinishedLoggingIn))
         if UserDefaults.standard.bool(forKey: AppConstants.isFinishedLoggingIn ) {
             if let windowScene = scene as? UIWindowScene {
                 let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
