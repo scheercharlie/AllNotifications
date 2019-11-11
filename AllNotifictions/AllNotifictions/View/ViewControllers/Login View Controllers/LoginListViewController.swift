@@ -14,10 +14,11 @@ class LoginListViewController: UIViewController {
     
     var fetchedResultsController: NSFetchedResultsController<NotificationHost>!
     
+    //MARK: Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        //Fetch notification Hosts
         let request: NSFetchRequest<NotificationHost> = NotificationHost.fetchRequest()
         let sortDescriptor = NSSortDescriptor.init(key: "objectID", ascending: true)
         request.sortDescriptors = [sortDescriptor]
@@ -44,9 +45,10 @@ class LoginListViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
-    
     }
 
+    //MARK: Active functions
+    //Button to be pressed when login actions are finished
     @IBAction func skipWasTapped(_ sender: Any) {
         finishLoggingIn()
         self.dismiss(animated: true, completion: nil)
@@ -60,6 +62,7 @@ class LoginListViewController: UIViewController {
         }
     }
     
+    //Prepare and present notification list
     fileprivate func presentNotificationViewController() {
         let storyboard = UIStoryboard(name: AppConstants.notificationStoryboard, bundle: Bundle.main)
         if let vc = storyboard.instantiateInitialViewController() {
@@ -69,6 +72,7 @@ class LoginListViewController: UIViewController {
     
 }
 
+//MARK: Tableview data source and delegate methods
 extension LoginListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let fetchedObjects = fetchedResultsController.fetchedObjects else {
@@ -107,7 +111,7 @@ extension LoginListViewController: UITableViewDataSource, UITableViewDelegate {
         return 100
     }
     
-    
+    //Transition to Webviewcontroller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == constants.loginSegueIdentifier {
             let cell = sender as! LoginCell
@@ -116,17 +120,13 @@ extension LoginListViewController: UITableViewDataSource, UITableViewDelegate {
                 let selectedService = fetchedResultsController.object(at: index)
                 let destination = segue.destination as! LoginWebViewController
                 destination.selectedService = selectedService
-            } else {
-                //TO DO:
-                //Print error
-                //Display alert: Login failed
             }
-            
         }
     }
     
 }
 
+//MARK: View constants
 extension LoginListViewController {
     enum constants {
         static let cellIdentifier = "loginCell"
@@ -134,6 +134,3 @@ extension LoginListViewController {
         static let loginSegueIdentifier = "segueToLogin"
     }
 }
-
-
-//Github login is not dismissing the screen when the redirect url is reached
