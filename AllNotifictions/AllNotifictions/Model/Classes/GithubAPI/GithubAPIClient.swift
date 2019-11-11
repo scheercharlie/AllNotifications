@@ -18,13 +18,13 @@ class GithubAPIClient: APIClient {
     enum endpoints {
         case authentication
         case tokenAuthentication
-        case getNotifications
+        case getNotifications(String)
         
         var stringValue: String {
             switch self {
             case .authentication: return "https://github.com/login/oauth/authorize" + "?client_id=" + Auth.clientId + "&redirect_uri=" + Auth.redirectURI + "&scope=notifications"
             case .tokenAuthentication: return "https://github.com/login/oauth/access_token"
-            case .getNotifications: return "https://api.github.com/notifications" + "?all=true"
+            case .getNotifications(let since): return "https://api.github.com/notifications" + "?all=true" + "&since=" + since
             }
         }
         
@@ -115,10 +115,10 @@ class GithubAPIClient: APIClient {
         }
     }
     
-    static func getNotifications(token: String, host: NotificationHost, completion: @escaping (Bool, Error?) -> Void) {
+    static func getNotifications(token: String, host: NotificationHost, since: String, completion: @escaping (Bool, Error?) -> Void) {
         let headers = [HTTPHeaders(value: "token \(token)", field: "Authorization")]
         
-        ApiTaskRequestWithHeaders(url: endpoints.getNotifications.url,
+        ApiTaskRequestWithHeaders(url: endpoints.getNotifications(since).url,
                                   method: "GET",
                                   responseType: Array<GithubAPINotificationResponse>.self, body: nil, headers: headers, errorType: GithubAPINotificationErrorResponse.self) { (data, error) in
                                     guard let data = data else {

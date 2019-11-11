@@ -125,23 +125,19 @@ class WordpressAPIClient: APIClient {
             if let notes = data?.notes {
                 for note in notes {
                     if isNewNotification(note, host: host) {
-                        print("is new note")
                         let newNotification = Notification(context: DataController.shared.viewContext)
                         newNotification.setupNewWordPressNotificationFrom(note, withHost: host) { (success) in
                             if success {
-                                print("wp get notifications success")
                                 DispatchQueue.main.async {
                                     completion(true, nil)
                                 }
                             } else {
-                                print("failed to get notifications")
                                 DispatchQueue.main.async {
                                     completion(false, error)
                                 }
                             }
                         }
                     } else {
-                        print("did not get new notes")
                         DispatchQueue.main.async {
                             completion(true, nil)
                         }

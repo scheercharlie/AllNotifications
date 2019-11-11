@@ -56,11 +56,9 @@ class NotificationListViewController: UIViewController {
     }
     
     fileprivate func fetchWordpressNotifications(_ service: NotificationHost) {
-        print("WordPress")
         //TO DO: handle the force unwrapping better
         WordpressAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
             if success {
-                print("yay")
                 self.tableView.reloadData()
                 service.lastUpdated = Date()
                 try? DataController.shared.viewContext.save()
@@ -69,8 +67,22 @@ class NotificationListViewController: UIViewController {
     }
     
     fileprivate func fetchGithubNotifications(_ service: NotificationHost) {
-        print("Github")
-        GithubAPIClient.getNotifications(token: service.token!, host: service) { (success, error) in
+        var dateString = ""
+        
+        if service.lastUpdated == nil {
+            let date = Date(timeIntervalSince1970: TimeInterval(exactly: 10.0)!)
+            let converter = ISO8601DateFormatter()
+            let string = converter.string(from: date)
+            dateString = string
+        } else {
+            if let date = service.lastUpdated {
+                let converter = ISO8601DateFormatter()
+                let string = converter.string(from: date)
+                dateString = string
+            }
+        }
+        
+        GithubAPIClient.getNotifications(token: service.token!, host: service, since: dateString ) { (success, error) in
             if success{
                 print("github yay")
                 service.lastUpdated = Date()
