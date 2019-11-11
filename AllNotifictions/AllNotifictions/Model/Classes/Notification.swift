@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension Notification {
-    func setupNewWordPressNotificationFrom(_ note: WordPressNote, host: NotificationHost) {
+    func setupNewWordPressNotificationFrom(_ note: WordPressNote, withHost host: NotificationHost) {
         self.id = String(note.id) 
         
         self.title = note.title
@@ -46,7 +46,7 @@ extension Notification {
         self.notificationsHost = host
     }
     
-    func setupNewGithubNotifiationFrom(_ note: GithubAPINotificationResponse, host: NotificationHost) {
+    func setupNewGithubNotifiationFrom(_ note: GithubAPINotificationResponse, withHost host: NotificationHost) {
         self.body = note.subject.title
         
         self.id = note.id
@@ -62,5 +62,7 @@ extension Notification {
         self.title = note.reason
         self.type = note.subject.type
         self.url = URL(string: note.notificationURL)
+        
+        self.notificationsHost = host
     }
 }

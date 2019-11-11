@@ -125,7 +125,7 @@ class WordpressAPIClient: APIClient {
             if let notes = data?.notes {
                 for note in notes {
                     let newNotification = Notification(context: DataController.shared.viewContext)
-                    newNotification.setupNewWordPressNotificationFrom(note, host: host)
+                    newNotification.setupNewWordPressNotificationFrom(note, withHost: host)
                     
 
                     

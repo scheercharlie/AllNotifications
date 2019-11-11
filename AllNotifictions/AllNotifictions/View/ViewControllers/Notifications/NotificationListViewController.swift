@@ -86,7 +86,8 @@ class NotificationListViewController: UIViewController {
         
         do {
             try notificationFetchedResultsController.performFetch()
-            
+            print("count")
+            print(notificationFetchedResultsController.fetchedObjects?.count)
         } catch {
             print("Could not fetch notifications")
         }
@@ -99,7 +100,9 @@ extension NotificationListViewController: UITableViewDelegate, UITableViewDataSo
         var noteCount = 0
         if let fetchedNotes = notificationFetchedResultsController.fetchedObjects {
             noteCount = fetchedNotes.count
+            print("rows in section \(fetchedNotes.count)")
         }
+        
         
         return noteCount
     }

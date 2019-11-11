@@ -121,8 +121,30 @@ class GithubAPIClient: APIClient {
         ApiTaskRequestWithHeaders(url: endpoints.getNotifications.url,
                                   method: "GET",
                                   responseType: Array<GithubAPINotificationResponse>.self, body: nil, headers: headers, errorType: GithubAPINotificationErrorResponse.self) { (data, error) in
-                                    print(data)
-                                    print(error)
+                                    guard let data = data else {
+                                        return
+                                        
+                                        //TO DO: do something with the error
+                                    }
+                                    
+                                    for notification in data {
+                                        let newNotification = Notification(context: DataController.shared.viewContext)
+                                        
+                                        newNotification.setupNewGithubNotifiationFrom(notification, withHost: host)
+                                    }
+                                    
+                                    do {
+                                        try DataController.shared.viewContext.save()
+                                        print("did save")
+                                        DispatchQueue.main.async {
+                                            completion(true, nil)
+                                        }
+                                    } catch {
+                                        print("Couldn't save WordPress notifications")
+                                        DispatchQueue.main.async {
+                                            completion(false, nil)
+                                        }
+                                    }
         }
         
         

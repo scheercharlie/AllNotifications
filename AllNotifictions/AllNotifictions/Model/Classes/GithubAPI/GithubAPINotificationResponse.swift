@@ -13,7 +13,7 @@ struct GithubAPINotificationResponse: Decodable {
     let unread: Bool
     let reason: String
     let updatedAt: String
-    let lastReadAt: String
+    let lastReadAt: String?
     let subject: GithubSubject
     let repository: GithubRepository
     let notificationURL: String

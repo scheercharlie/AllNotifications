@@ -72,9 +72,6 @@ class APIClient {
             
             let jsonDecoder = JSONDecoder()
             
-            let json = try? JSONSerialization.jsonObject(with: data, options: [])
-            print(json)
-            
             do {
                 let decodedData = try jsonDecoder.decode(ResponseType.self, from: data)
                 DispatchQueue.main.async {
